@@ -1,0 +1,68 @@
+<?
+/**
+ * Plugin Name:       Opinions system
+ * Description:       Custome login form, reagistration form, lost password
+ * Version:           1.0.0
+ * Author:            Piotr Stefaniak
+ * License:           GPL-2.0+
+ * Text Domain:       o-system
+ */
+
+
+ class Active {
+    /**
+     * Plugin activation hook.
+     *
+     * Creates all WordPress pages needed by the plugin.
+     */
+    public static function plugin_activated() {
+        // Information needed for creating the plugin's pages
+        $page_definitions = array(
+            'member-account-login' => array(
+                'title' => __( 'Logowanie', 'o-system' ),
+                'content' => '[o-system-login-form]'
+            ),
+            'member-account' => array(
+                'title' => __( 'Panel użytkownika', 'o-system' ),
+                'content' => '[o-system-info]'
+            ),
+            // 'member-account-lostpassword' => array(
+            //     'title' => __( 'Lost password', 'o-system' ),
+            //     'content' => '[o-system-pwd-form]'
+            // ),
+            // 'member-account-changepassword' => array(
+            //     'title' => __( 'Change password', 'o-system' ),
+            //     'content' => '[o-system-pwd-form]'
+            // ),
+            'member-account-registration' => array(
+                'title' => __( 'Rejestracja', 'o-system' ),
+                'content' => '[o-system-acount-form]'
+            ),
+        );
+    
+        foreach ( $page_definitions as $slug => $page ) {
+            // Check that the page doesn't exist already
+            $query = new WP_Query( 'pagename=' . $slug );
+            if ( ! $query->have_posts() ) {
+                // Add the page using the data from the array above
+                wp_insert_post(
+                    array(
+                        'post_content'   => $page['content'],
+                        'post_name'      => $slug,
+                        'post_title'     => $page['title'],
+                        'post_status'    => 'publish',
+                        'post_type'      => 'page',
+                        'ping_status'    => 'closed',
+                        'comment_status' => 'closed',
+                    )
+                );
+            }
+        }
+    }
+}
+
+// Initialize the plugin
+$personalize_login_pages_plugin = new Active();
+
+// Create the custom pages at plugin activation
+register_activation_hook( __FILE__, array( 'Active', 'plugin_activated' ) );
