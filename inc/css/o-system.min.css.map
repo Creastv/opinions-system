@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "o-system.scss"
+    ],
+    "names": [],
+    "file": "o-system.min.css"
+}
