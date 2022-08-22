@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Plugin Name:       Opinions system
  * Description:       Custome login form, reagistration form, lost password
@@ -6,7 +6,20 @@
  * Author:            Piotr Stefaniak
  * License:           GPL-2.0+
  * Text Domain:       o-system
- */
+ **/
+
+function o_system_reg_frond(){
+        wp_enqueue_style('o-system', plugins_url('/inc/css/o-system.css', __FILE__));
+        wp_enqueue_script('o-system', plugins_url( '/inc/js/o-system.js' , __FILE__ ));
+    }
+add_action('wp_enqueue_scripts','o_system_reg_frond');
+
+// function o_system_reg_back(){
+//         wp_enqueue_style('o-system', plugins_url('/inc/css/o-system.css', __FILE__));
+//         wp_enqueue_script('o-system', plugins_url( '/inc/js/o-system.js' , __FILE__ ));
+//     }
+// add_action('wp_enqueue_scripts','o_system_reg_back');
+
 
 
  class Active {
