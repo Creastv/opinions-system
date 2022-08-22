@@ -3,3 +3,37 @@
 ::before {
   box-sizing: border-box;
 }
+
+.o-system-container{
+  padding: 0 15px;
+
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    .col-full {
+      width: 100%;
+    }
+    .col {
+      padding: 0 10px;
+    }
+    .col-auto {
+      flex: auto;
+    }
+    .col-1 {
+      width: 100%;
+    }
+    .col-2 {
+      width: 50%;
+      @media #{$sm} {
+        width: 100%;
+      }
+    }
+    .col-3 {
+      width: 33.33%;
+      @media #{$sm} {
+        width: 100%;
+      }
+    }
+  }
+
+}

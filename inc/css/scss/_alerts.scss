@@ -1,0 +1,18 @@
+// o-system-alert o-system--alert-success
+.o-system-alert{
+    padding:10px;
+    margin-bottom: 30px;
+    border-radius:6px;
+    border: 1px solid $gray;
+    background-color: lighten($gray, 5%);
+    color:$p;
+    font-size: 14px;
+    
+}
+.o-system--alert-danger{
+    border: 1px solid lighten($red, 40%);
+    strong{
+        color:$red;
+    }
+}
+.o-system--alert-success{}

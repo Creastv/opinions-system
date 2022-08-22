@@ -1,0 +1,15 @@
+@mixin trans {
+  transition: all ease-in-out 0.2s;
+}
+
+@mixin shadow {
+  box-shadow: 0 0px 30px 0 rgba(0, 0, 0, 0.08);
+}
+
+@mixin grad {
+  background: linear-gradient(185.79deg,#272768 0%,#6153dc 100%);
+}
+
+@mixin grad2{
+  background-image: linear-gradient(45.72deg,#E1639A -50.49%,#E1639F 15.16%,#F1C755 100.11%);
+}
