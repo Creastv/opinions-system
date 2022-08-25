@@ -33,7 +33,6 @@ function o_system_register_form_callback() {
                     <?php $user_email = isset($_POST['user_email']) ? $_POST['user_email'] : ''; ?>
                     <input class="form-control" type="email" name="user_email" id="user_email" value="<?php echo $user_email; ?>" />
                 </div>
-
                 <div class="form-group col col-1">
                     <label for="user_password">Hasło</label>
                     <input class="form-control" type="password" name="user_password" id="user_password" />
@@ -159,7 +158,7 @@ function o_system_register_form_callback() {
                   wp_set_auth_cookie($errors);
                   do_action('wp_login', $u_name);
 
-                  wp_redirect(site_url('/member-account/'));
+                  wp_redirect(site_url('/panel-uzytkownika/'));
                   exit;
               }
           }

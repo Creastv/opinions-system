@@ -1,6 +1,4 @@
 .o-system-form {
-  max-width: 400px;
-  margin: 0 auto;
   .form-group {
     margin-bottom: 15px;
     label {
@@ -54,4 +52,9 @@
     display: block;
     width: 100%;
   }
+}
+
+.o-system-form-400{
+  max-width: 400px;
+  margin: 0 auto;
 }

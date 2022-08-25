@@ -91,11 +91,6 @@
   display: block;
 }
 
-.o-system-form {
-  max-width: 400px;
-  margin: 0 auto;
-}
-
 .o-system-form .form-group {
   margin-bottom: 15px;
 }
@@ -144,6 +139,11 @@
   width: 100%;
 }
 
+.o-system-form-400 {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
 .o-system-alert {
   padding: 10px;
   margin-bottom: 30px;
@@ -160,5 +160,109 @@
 
 .o-system--alert-danger strong {
   color: red;
+}
+
+.user-panel {
+  max-width: 100% !important;
+}
+
+.user-panel .wraper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.user-panel .wraper .left {
+  width: 30%;
+  padding-right: 50px;
+}
+
+.user-panel .wraper .left ul.tab {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.user-panel .wraper .left ul.tab li a {
+  padding: 5px 15px;
+  text-decoration: none;
+  display: block;
+}
+
+.user-panel .wraper .left ul.tab li a.active {
+  background-color: #6053dc;
+  color: #fff;
+}
+
+.user-panel .wraper .right {
+  width: 70%;
+  padding: 0 30px;
+}
+
+.user-panel .wraper .right .tabcontent {
+  display: none;
+}
+
+.user-panel .wraper .right .tabcontent.active {
+  display: block;
+}
+
+.container--tabs {
+  margin: 2rem;
+}
+
+.container--tabs .nav-tabs {
+  float: left;
+  width: 100%;
+  margin: 0;
+  list-style-type: none;
+  border-bottom: 1px solid #ddd;
+}
+
+.container--tabs .nav-tabs > li {
+  float: left;
+  margin-bottom: -1px;
+}
+
+.container--tabs .nav-tabs > li > a {
+  float: left;
+  margin-right: 2px;
+  line-height: 1.42857143;
+  padding: 10px;
+  border: 1px solid transparent;
+  border-radius: 4px 4px 0 0;
+}
+
+.container--tabs .nav-tabs > li > a:hover {
+  border-color: #eee #eee #ddd;
+}
+
+.container--tabs .nav-tabs > li.active > a,
+.container--tabs .nav-tabs > li.active > a:hover,
+.container--tabs .nav-tabs > li.active > a:focus {
+  color: #555;
+  cursor: default;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-bottom-color: transparent;
+}
+
+.container--tabs .tab-content {
+  float: left;
+  width: 100%;
+}
+
+.container--tabs .tab-content > .tab-pane {
+  display: none;
+}
+
+.container--tabs .tab-content > .tab-pane.active {
+  display: block;
+  padding: 2.5% 3.5%;
+  background-color: #efefef;
+}
+
+.container--tabs .tab-content > .active {
+  display: block;
 }
 /*# sourceMappingURL=o-system.css.map */
