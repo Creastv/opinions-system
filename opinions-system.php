@@ -14,6 +14,7 @@ require_once plugin_dir_path( __FILE__ ) . '/re-log/login.php';
 function o_system_reg_frond(){
         wp_enqueue_style('o-system', plugins_url('/inc/css/o-system.css', __FILE__));
         wp_enqueue_script('o-system', plugins_url( '/inc/js/o-system.js' , __FILE__ ));
+        wp_enqueue_script('o-recaptcha', 'https://www.google.com/recaptcha/api.js');
     }
 add_action('wp_enqueue_scripts','o_system_reg_frond');
 
