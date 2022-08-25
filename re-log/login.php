@@ -14,7 +14,7 @@
         <?php } ?>
         <form method="post" class="wc-login-form">
                 <div class="form-group col col-1">
-                    <label for="user_name">Nazwa urzytkownika</label>
+                    <label for="user_name">Adres email</label>
                     <input class="form-control" name="log" type="text" id="user_name" value="<?php echo $_POST['log']; ?>">
                 </div>
                 <div class="form-group col col-1">
