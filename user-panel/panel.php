@@ -3,6 +3,9 @@
  require_once plugin_dir_path( __FILE__ ) . '/inc/custom-fields.php';
  require_once plugin_dir_path( __FILE__ ) . '/inc/change-password.php';
  require_once plugin_dir_path( __FILE__ ) . '/inc/edit-user.php';
+ require_once plugin_dir_path( __FILE__ ) . '/inc/shop-inf.php';
+  require_once plugin_dir_path( __FILE__ ) . 'inc/shop-api.php'; 
+ 
 
  add_shortcode('lr-account-info', 'lr_seller_account_callback');
   function lr_seller_account_callback() {

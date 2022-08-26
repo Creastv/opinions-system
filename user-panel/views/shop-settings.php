@@ -1,1 +1,2 @@
-<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque ducimus temporibus tempore veniam dicta, ipsa possimus? Illo cum consequuntur error ullam laudantium, cupiditate, expedita nam nihil dolorem ipsam nobis magnam.</p>
+
+<?php echo do_shortcode("[o-system-add-shop]"); ?>

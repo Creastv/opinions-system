@@ -11,6 +11,7 @@
 require_once plugin_dir_path( __FILE__ ) . '/re-log/registration.php';
 require_once plugin_dir_path( __FILE__ ) . '/re-log/login.php';
 require_once plugin_dir_path( __FILE__ ) . '/user-panel/panel.php';
+require_once plugin_dir_path( __FILE__ ) . '/shops/cpt.php';
 
 function o_system_reg_frond(){
         wp_enqueue_style('o-system', plugins_url('/inc/css/o-system.css', __FILE__));
