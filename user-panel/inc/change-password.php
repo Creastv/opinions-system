@@ -41,7 +41,7 @@
                     do_action('password_reset');
                     echo ob_get_clean();
                 ?>
-                <?php wp_nonce_field('changePassword', 'formType'); ?>
+                <?php wp_nonce_field('changePassword', 'profil-psw'); ?>
 
                 <div class="form-group col col-1">
                     <button type="submit" class="o-systm-btn change-paw">Zmień hasło</button>
@@ -59,7 +59,7 @@
 
   function wc_user_change_pwd_callback() {
 
-      if (isset($_POST['formType']) && wp_verify_nonce($_POST['formType'], 'changePassword')) {
+      if (isset($_POST['profil-psw']) && wp_verify_nonce($_POST['profil-psw'], 'changePassword')) {
           
          global $changePasswordError, $changePasswordSuccess;
 

@@ -3,8 +3,9 @@
    add_shortcode('o-system-edit-profil', 'o_system_edit_profil_user');
   function o_system_edit_profil_user() {
     ob_start();
-    $user = wp_get_current_user();
+    
     if ( is_user_logged_in() ) {
+    $user = wp_get_current_user();
     global $registrationError, $registrationSuccess; 
     ?>
     <div class="o-system-container">
@@ -43,7 +44,7 @@
                 do_action('update_profil');
                 echo ob_get_clean();
             ?>
-            <?php wp_nonce_field('updateProfil', 'formType'); ?>
+            <?php wp_nonce_field('updateProfil', 'profil-edit'); ?>
             <div class="form-group col col-1">
                 <button type="submit" class="o-systm-btn update_user">Zapisz</button>
             </div>
@@ -61,7 +62,7 @@ add_action('wp', 'wc_user_update_callback');
 
     $user = wp_get_current_user();
 
-    if (isset($_POST['formType']) && wp_verify_nonce($_POST['formType'], 'updateProfil')) {
+    if (isset($_POST['profil-edit']) && wp_verify_nonce($_POST['profil-edit'], 'updateProfil')) {
 
         global $registrationError, $registrationSuccess;
         

@@ -24,23 +24,65 @@ function my_show_extra_profile_fields( $user ) { ?>
         </td>
     </tr>
     <tr>
-        <th><label for="shop-name">Shop name</label></th>
+        <th><label for="shop-name">Nazwa sklepu</label></th>
         <td>
             <input type="text" name="shop-name" id="shop-name" value="<?php echo esc_attr( get_the_author_meta( 'shop-name', $user->ID ) ); ?>" class="regular-text" /><br />
         </td>
     </tr>
     <tr>
-        <th><label for="shop-url">Shop url</label></th>
+        <th><label for="shop-desc">Opis sklepu</label></th>
+        <td>
+            <textarea type="textarea" name="shop-desc" id="shop-desc" rows="5" cols="30" class="regular-text"><?php echo esc_attr( get_the_author_meta( 'shop-desc', $user->ID ) ); ?></textarea><br />
+        </td>
+    </tr>
+    <tr>
+        <th><label for="shop-desc">Nr telefonu</label></th>
+        <td>
+            <input type="text" name="shop-phone" id="shop-phone" value="<?php echo esc_attr( get_the_author_meta( 'shop-phone', $user->ID ) ); ?>" class="regular-text" /><br /><br />
+        </td>
+    </tr>
+    <tr>
+        <th><label for="shop-desc">Adres email</label></th>
+        <td>
+            <input type="text" name="shop-email" id="shop-email" value="<?php echo esc_attr( get_the_author_meta( 'shop-email', $user->ID ) ); ?>" class="regular-text" /><br /><br />
+        </td>
+    </tr>
+    <tr>
+        <th><label for="shop-url">Link do sklepu</label></th>
         <td>
             <input type="url" name="shop-url" id="shop-url" value="<?php echo esc_attr( get_the_author_meta( 'shop-url', $user->ID ) ); ?>" class="regular-text" /><br />
         </td>
     </tr>
     <tr>
-        <th><label for="shop-desc">Shop descciption</label></th>
         <td>
-            <textarea type="textarea" name="shop-desc" id="shop-desc" rows="5" cols="30" class="regular-text"><?php echo esc_attr( get_the_author_meta( 'shop-desc', $user->ID ) ); ?></textarea><br />
+           <h4>Adres fizyczny sklepu:</h4></br>
         </td>
     </tr>
+    <tr>
+        <th><label for="shop-desc">Adres: </label></th>
+        <td>
+            <input type="text" name="shop-address" id="shop-address" value="<?php echo esc_attr( get_the_author_meta( 'shop-address', $user->ID ) ); ?>" class="regular-text" /><br /><br />
+        </td>
+    </tr>
+    <tr>
+        <th><label for="shop-desc2">Adres: </label></th>
+        <td>
+            <input type="text" name="shop-address2" id="shop-address2" value="<?php echo esc_attr( get_the_author_meta( 'shop-address2', $user->ID ) ); ?>" class="regular-text" /><br /><br />
+        </td>
+    </tr>
+    <tr>
+        <th><label for="shop-desc">Miasto: </label></th>
+        <td>
+            <input type="text" name="shop-city" id="shop-city" value="<?php echo esc_attr( get_the_author_meta( 'shop-city', $user->ID ) ); ?>" class="regular-text" /><br /><br />
+        </td>
+    </tr>
+    <tr>
+        <th><label for="shop-desc">Kod pocztowy: </label></th>
+        <td>
+            <input type="text" name="shop-zip-code" id="shop-zip-code" value="<?php echo esc_attr( get_the_author_meta( 'shop-zip-code', $user->ID ) ); ?>" class="regular-text" /><br /><br />
+        </td>
+    </tr>
+    
     <tr>
         <th>
             <h3>REST API</h3>
@@ -72,8 +114,16 @@ function my_save_extra_profile_fields( $user_id ) {
 
 	update_user_meta( $user_id, 'shop-logo', $_POST['shop-logo'] );
     update_user_meta( $user_id, 'shop-name', $_POST['shop-name'] );
-    update_user_meta( $user_id, 'shop-url', $_POST['shop-url'] );
     update_user_meta( $user_id, 'shop-desc', $_POST['shop-desc'] );
+    update_user_meta( $user_id, 'shop-phone', $_POST['shop-phone'] );
+    update_user_meta( $user_id, 'shop-email', $_POST['shop-email'] );
+    update_user_meta( $user_id, 'shop-url', $_POST['shop-url'] );
+   
+
+    update_user_meta( $user_id, 'shop-address', $_POST['shop-address'] );
+    update_user_meta( $user_id, 'shop-address2', $_POST['shop-address2'] );
+    update_user_meta( $user_id, 'shop-city', $_POST['shop-city'] );
+    update_user_meta( $user_id, 'shop-zip-code', $_POST['shop-zip-code'] );
     
     update_user_meta( $user_id, 'customer-key', $_POST['customer-key'] );
     update_user_meta( $user_id, 'private-key', $_POST['private-key'] );
