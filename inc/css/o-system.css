@@ -129,8 +129,9 @@
 }
 
 .o-system-form .o-systm-btn {
+  cursor: pointer;
   background-color: #6053dc;
-  color: #fff;
+  color: #fff !important;
   font-size: 21px;
   border: none;
   border-radius: 6px;

@@ -43,8 +43,9 @@
     // }
   }
   .o-systm-btn{
+    cursor: pointer;
     background-color: $main;
-    color:#fff;
+    color:#fff!important;
     font-size: 21px;
     border:none;
     border-radius:6px;

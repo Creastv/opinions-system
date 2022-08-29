@@ -38,8 +38,10 @@
                 </div>
         </form>
 <?php } else {
-        echo '<p class="error-logged">Jesteś już zalogowany</p>';
-          wp_redirect(site_url('/panel-uzytkownika/'));
+        echo '<p>Jesteś już zalogowany</p>';
+        // wp_redirect(site_url('/panel-uzytkownika/'));
+        $url = site_url('/panel-uzytkownika/');
+        echo("<script>location.href = '".$url."'</script>");
     }
     echo '</div>';
     echo '</div>';

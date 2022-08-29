@@ -60,10 +60,12 @@ function o_system_register_form_callback() {
                 </div>
         </form>
 <?php  } else {
-           echo '<p class="error-logged">You are already logged in.</p>';
-           wp_redirect(site_url('/panel-uzytkownika/'));
+          echo '<p>Jesteś już zalogowany</p>';
+          // wp_redirect(site_url('/panel-uzytkownika/'));
+          $url = site_url('/panel-uzytkownika/');
+          echo("<script>location.href = '".$url."'</script>");
         
-        }
+          }
         echo '</div>';
          echo '</div>';
 
