@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Opinions system
  * Description:       Custome login form, reagistration form, lost password
- * Version:           1.0.0
+ * Version:           1.0.1
  * Author:            Piotr Stefaniak
  * License:           GPL-2.0+
  * Text Domain:       o-system
