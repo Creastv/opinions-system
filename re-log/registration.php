@@ -1,5 +1,5 @@
 <?php
-  add_shortcode('o-system-create-acount-form', 'o_system_register_form_callback');
+  add_shortcode('o-system-acount-form', 'o_system_register_form_callback');
 
 function o_system_register_form_callback() {
     ob_start();
