@@ -49,10 +49,10 @@ add_action('wp_enqueue_scripts','o_system_reg_frond');
             //     'title' => __( 'Lost password', 'o-system' ),
             //     'content' => '[o-system-pwd-form]'
             // ),
-            // 'member-account-changepassword' => array(
-            //     'title' => __( 'Change password', 'o-system' ),
-            //     'content' => '[o-system-pwd-form]'
-            // ),
+            'member-account-changepassword' => array(
+                'title' => __( 'Sklepy', 'o-system' ),
+                'content' => '[o-system-listing-shops]'
+            ),
             'member-account-registration' => array(
                 'title' => __( 'Rejestracja', 'o-system' ),
                 'content' => '[o-system-acount-form]'
