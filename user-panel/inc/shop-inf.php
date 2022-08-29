@@ -128,7 +128,8 @@ function o_system_add_shop_callback() {
             update_user_meta( $user->ID, 'shop-address2',  $shop_address2); 
             update_user_meta( $user->ID, 'shop-city',  $shop_city); 
             update_user_meta( $user->ID, 'shop-zip-code',  $shop_zip); 
-        
+
+            if (get_post_status($user->ID) ) {
             $my_post = array(
                 'ID' => $user->ID,
                 'post_type'     => 'shops',
@@ -146,15 +147,39 @@ function o_system_add_shop_callback() {
                     'shop-zip-code' =>  $shop_zip
                 )
             );
+            $my_post= wp_insert_post($my_post);
+
+            } else {
+    
+             $my_post = array(
+                'import_id' => $user->ID,
+                'post_type'     => 'shops',
+                'post_title'    => $shop_name,
+                'post_status'   => 'draft',
+                'meta_input' => array(
+                    'shop-name' =>  $shop_name,
+                    'shop-desc' =>  $shop_des,
+                    'shop-phone' =>  $shop_phone,
+                    'shop-email' =>  $shop_email,
+                    'shop-url' =>  $shop_url,
+                    'shop-address' =>  $shop_address,
+                    'shop-address2' =>  $shop_address2,
+                    'shop-city' =>  $shop_city,
+                    'shop-zip-code' =>  $shop_zip
+                )
+                );
+            $my_post= wp_insert_post($my_post);
+            }
+            
         }
-         if (is_wp_error($errors)) {
+        if (is_wp_error($errors)) {
             $registrationError = $errors->get_error_message();
         } else {
             
-            //   wp_set_password($u_pwd, $user->ID);
-            //   wp_set_current_user($user->ID, $user->display_name);
-            //   wp_set_auth_cookie($user->ID);
-            //   do_action('wp_login', $user->display_name);
+              wp_set_password($u_pwd, $user->ID);
+              wp_set_current_user($user->ID, $user->display_name);
+              wp_set_auth_cookie($user->ID);
+              do_action('wp_login', $user->display_name);
               $changePasswordSuccess = 'Password is successfully updated.';  
             
 
@@ -162,7 +187,7 @@ function o_system_add_shop_callback() {
         
         // Insert the post into the database
       	
-wp_insert_post( $my_post );
+
     }
 }
 

@@ -1,7 +1,4 @@
-<?php
-get_header();
-require_once plugin_dir_path( __FILE__ ) . 'fields.php'; 
-while ( have_posts() ) : the_post();
+<?php require_once plugin_dir_path( __FILE__ ) . 'fields.php';  
    echo "<article>";
    echo '<br><br>';
     echo "Nazwa sklepu: <strong>" . $shop['name'] . "</strong><br>";
@@ -13,5 +10,3 @@ while ( have_posts() ) : the_post();
     echo "Miasto: <strong>" . $shop['city'] . "</strong><br>";
     echo "Kod pocztowy: <strong>" . $shop['zip'] . "</strong><br>";
    echo "</article>";
-endwhile;
-get_footer();

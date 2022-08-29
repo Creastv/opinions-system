@@ -137,18 +137,18 @@ function o_system_register_form_callback() {
 
             // //   create post
             // Create post object
-                $my_post = array(
-                'post_type'  => 'shops',
-                'post_title'    => $u_name,
-                'post_status'   => 'draft',
-                'post_author'   => 1,
-                'meta_input' => array(
-                    'shop-name' => 'test',
-                )
-                );
-                // update_post_meta( $post_id, 'shop-name', $_POST['shop-name'] );
-                // Insert the post into the database
-                wp_insert_post( $my_post );
+                // $my_post = array(
+                // 'post_type'  => 'shops',
+                // 'post_title'    => $u_name,
+                // 'post_status'   => 'draft',
+                // 'post_author'   => 1,
+                // 'meta_input' => array(
+                //     'shop-name' => 'test',
+                // )
+                // );
+                // // update_post_meta( $post_id, 'shop-name', $_POST['shop-name'] );
+                // // Insert the post into the database
+                // wp_insert_post( $my_post );
 
 
 

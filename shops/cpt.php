@@ -44,10 +44,17 @@ require_once plugin_dir_path( __FILE__ ) . '/custom-fields.php';
 
 
 add_filter( 'single_template', 'o_system_single_shop_template' );
-
 function o_system_single_shop_template( $single_template ){
     global $post;
     $file = dirname(__FILE__) .'/templates/single-'. $post->post_type .'.php';
     if( file_exists( $file ) ) $single_template = $file;
     return $single_template;
+}
+
+add_filter( 'archive_template', 'o_system_archive_shop_template' );
+function o_system_archive_shop_template( $archive_template ){
+    global $post;
+    $archive = dirname(__FILE__) .'/templates/archive-'. $post->post_type .'.php';
+    if( file_exists( $archive ) ) $archive_template = $archive;
+    return $archive_template;
 }

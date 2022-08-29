@@ -7,7 +7,7 @@
   require_once plugin_dir_path( __FILE__ ) . 'inc/shop-api.php'; 
  
 
- add_shortcode('lr-account-info', 'lr_seller_account_callback');
+ add_shortcode('o-system-account-info', 'lr_seller_account_callback');
   function lr_seller_account_callback() {
     ob_start();
     if ( is_user_logged_in() ) { ?>
