@@ -51,7 +51,6 @@ add_action('wp_enqueue_scripts','o_system_reg_frond');
             // ),
             'member-account-changepassword' => array(
                 'title' => __( 'Sklepy', 'o-system' ),
-                'content' => '[o-system-listing-shops]'
             ),
             'member-account-registration' => array(
                 'title' => __( 'Rejestracja', 'o-system' ),
