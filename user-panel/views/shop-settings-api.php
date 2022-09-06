@@ -1,4 +1,6 @@
 <?php 
+
+
 $user = wp_get_current_user();
 $shop = array (
     'id'  => $current_user->id,
@@ -9,14 +11,24 @@ $shop = array (
 if($shop['kk'] && $shop['kp']){
 echo "<h4> Klucze twojego sklepu WooCommerce</h4>";    
 echo "ID sklepu: <strong>" . $shop['id'] . "</strong><br>";
-echo "Klucz klienta: <strong>" . $shop['kk'] . "</strong><br>";
-echo "Klucz prywatny: <strong>" . $shop['kp'] . "</strong><br>";
-}
-
-echo "<h4> Zmień lub dodaj klucze REAST API Twojego sklepu WooCommerce</h4>";
-echo '<p>Sprawdź gdzie znaleść swoje klucze - <a href="#">Czytaj więcej</a></p>';
+echo "Klucz klienta: <strong> ***********" . substr($shop['kk'],-4) . "</strong><br>";
+echo "Klucz prywatny: <strong> ***********" . substr($shop['kp'],-4) . "</strong><br>";
+echo o_system_shope_api_delate();
+echo "<h4>Edytuj klucze</h4>";
 echo " <br>";
 
-echo do_shortcode('[o-system-add-api]');
+} else {
+
+echo "<h4> Dodaj klucze REAST API Twojego sklepu WooCommerce</h4>";
+echo '<p>Sprawdź gdzie znaleść swoje klucze - <a href="#">Czytaj więcej</a></p>';
+echo " <br>";
+}
+
+
+
+echo o_system_add_api();
+
+
+
 
 ?>

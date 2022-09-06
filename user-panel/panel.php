@@ -4,7 +4,10 @@
  require_once plugin_dir_path( __FILE__ ) . '/inc/change-password.php';
  require_once plugin_dir_path( __FILE__ ) . '/inc/edit-user.php';
  require_once plugin_dir_path( __FILE__ ) . '/inc/shop-inf.php';
-  require_once plugin_dir_path( __FILE__ ) . 'inc/shop-api.php'; 
+ require_once plugin_dir_path( __FILE__ ) . '/inc/shop-api.php'; 
+  require_once plugin_dir_path( __FILE__ ) . '/inc/shop-control.php'; 
+  require_once plugin_dir_path( __FILE__ ) . '/inc/controls-shop/shop-api-delete.php';
+ 
  
 
  add_shortcode('o-system-account-info', 'lr_seller_account_callback');
@@ -34,13 +37,14 @@
                   </ul>
                </li>
                <li>
-                  <a href="#opinions" class="tablinks" onclick="openTab(event, 'opinions')" > Opinie</a>
+                  <a href="#opinions"  class="tablinks" onclick="openTab(event, 'opinions')" > Opinie</a>
                   <ul>
-                     <li><a href="#shop-opinions" class="tablinks" onclick="openTab(event, 'shop-opinions')" > Opinie ze sklepu</a></li>
+                     <li><a href="#shop-opinions" id="s-opinions" class="tablinks" onclick="openTab(event, 'shop-opinions')" > Opinie ze sklepu</a></li>
                      <li><a href="#system-opinions" class="tablinks" onclick="openTab(event, 'system-opinions')" > Opinie ze systemu</a></li>
                   </ul>
                </li>
             </ul>
+             <a href="#" class="o-systm-btn">Sciągnij plugin</a>
          </div>
          <div class="right">
             <div id="dashboard" class="tabcontent">
@@ -75,7 +79,7 @@
             </div>
             <div id="shop-opinions" class="tabcontent">
                <h3>Opinie ze sklepu</h3>
-               <?php  require_once plugin_dir_path( __FILE__ ) . '/views/shop-settings.php'; ?>
+               <?php  require_once plugin_dir_path( __FILE__ ) . '/views/shop-opinions.php'; ?>
             </div>
             <div id="system-opinions" class="tabcontent">
                <h3>Opinie ze systemu</h3>

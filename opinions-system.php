@@ -17,12 +17,14 @@ function o_system_reg_frond(){
         wp_enqueue_style('o-system', plugins_url('/inc/css/o-system.css', __FILE__));
         wp_enqueue_script('o-system', plugins_url( '/inc/js/o-system.js' , __FILE__ ));
         wp_enqueue_script('o-recaptcha', 'https://www.google.com/recaptcha/api.js');
+       // wp_enqueue_script('o-vue-js', 'https://unpkg.com/vue@next');
+        //wp_enqueue_script('o-vue-script', plugins_url( '/opinions/inc/js/o-system-vue.js' , __FILE__ ));
     }
 add_action('wp_enqueue_scripts','o_system_reg_frond');
 
 // function o_system_reg_back(){
 //         wp_enqueue_style('o-system', plugins_url('/inc/css/o-system.css', __FILE__));
-//         wp_enqueue_script('o-system', plugins_url( '/inc/js/o-system.js' , __FILE__ ));
+        wp_enqueue_script('o-system', plugins_url( '/inc/js/o-system.js' , __FILE__ ));
 //     }
 // add_action('wp_enqueue_scripts','o_system_reg_back');
 
@@ -84,3 +86,4 @@ $personalize_login_pages_plugin = new Active();
 
 // Create the custom pages at plugin activation
 register_activation_hook( __FILE__, array( 'Active', 'plugin_activated' ) );
+

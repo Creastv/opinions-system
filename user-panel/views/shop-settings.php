@@ -1,2 +1,2 @@
 
-<?php echo do_shortcode("[o-system-add-shop]"); ?>
+<?php echo o_system_add_shop(); ?>

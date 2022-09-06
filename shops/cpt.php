@@ -32,7 +32,7 @@ function o_system_post_types() {
 		'publicly_queryable' => true,
 		'show_in_rest' => true,
 		"rewrite"             => array( "slug" => "shops", "with_front" => true ),
-		'supports'      => array( 'title' ),
+		'supports'      => array( 'title', 'thumbnail'),
 		// , 'editor' 
 	);
     	register_post_type( 'shops', $args );
@@ -58,3 +58,4 @@ function o_system_archive_shop_template( $archive_template ){
     if( file_exists( $archive ) ) $archive_template = $archive;
     return $archive_template;
 }
+

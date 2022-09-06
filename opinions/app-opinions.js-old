@@ -1,0 +1,56 @@
+
+    const app = Vue.createApp({
+    data(){
+        return {
+            test: "test",
+            opinions: [],
+            isLoading: false,
+            
+
+        }
+    },
+     watch: {
+        isLoading(){
+            if(this.isLoading = true){
+                this.test = "test2"
+            } else {
+                this.test = "test"
+            }
+            
+        }
+    },
+    methods: {
+        loadOpinions(){
+            
+            this.isLoading = true;
+            var authCode = btoa('ck_c086751120d32cfb9173e832bc9a24e17b1cc3af:cs_943da74ff6cbc2d0d53b401ee35ca519cc6c2177');
+            fetch('https://www.przygotowaniemotoryczne.com/wp-json/wc/v3/products/reviews', {
+                method: 'GET',
+                headers: {
+                    'Authorization': "Basic " + authCode
+                },
+                
+            })
+            .then(function(response) {
+                if(response.ok){
+                    return response.json();
+                }
+            } )
+            .then( function(data) {
+                this.isLoading = false;
+                console.log(data)
+                console.log(this.isLoading)
+            })
+        }
+    },
+    created() {
+        console.log("updated -> this.isLoading", this.isLoading);
+        this.isLoading = false;
+    },
+    mounted(){
+        this.loadOpinions();
+        console.log(this.isLoading)
+    }
+});
+
+app.mount('#opinnions');

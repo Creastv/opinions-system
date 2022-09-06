@@ -2,16 +2,17 @@
   add_shortcode('o-system-add-api', 'o_system_add_api');
   function o_system_add_api() {
     ob_start();
+
+    if ( is_user_logged_in() ) {
     $user = wp_get_current_user();
-
-    if ( is_user_logged_in() ) { ?>
-
+    global $registrationErrorAPI;
+    ?>
     <div class="o-system-container">
         <div class="o-system-form">
 
-        <?php  if (!empty($registrationError)) { ?>
+        <?php  if (!empty($registrationErrorAPI)) { ?>
             <div class="o-system-alert o-system--alert-danger">
-                <?php echo $registrationError; ?>
+                <?php echo $registrationErrorAPI; ?>
             </div>
         <?php } ?>
 
@@ -54,12 +55,21 @@ function o_system_add_api_callback() {
     $user = wp_get_current_user();
 
     if (isset($_POST['shopIp']) && wp_verify_nonce($_POST['shopIp'], 'addShopIp')) {
+        global $registrationErrorAPI;
     
         $shop_ck = trim($_POST['customer-key']);
         $shop_pk = trim($_POST['private-key']);
-        
+         if ( $shop_ck == '') {
+              $registrationErrorAPI .= '<strong>Error! </strong> Wprowadź <b>Klucz klienta</b><br>';
+        }
+        if ( $shop_pk == '') {
+              $registrationErrorAPI .= '<strong>Error! </strong> Wprowadź <b> Klucz Prywatny</b><br>';
+        }
+        if (empty($registrationErrorAPI)) {
         update_user_meta( $user->ID, 'customer-key',  $shop_ck); 
         update_user_meta( $user->ID, 'private-key',  $shop_pk); 
+        }
+
 
     }
 }

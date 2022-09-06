@@ -36,3 +36,17 @@ a {
 }
 
 }
+
+.o-systm-btn{
+    cursor: pointer;
+    background-color: $main;
+    color:#fff!important;
+    text-align: center;
+    font-size: 21px;
+    border:none;
+    border-radius:6px;
+    padding: 10px 30px;
+    margin: 10px 0;
+    display: block;
+    width: 100%;
+  }

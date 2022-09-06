@@ -91,6 +91,20 @@
   display: block;
 }
 
+.o-systm-btn {
+  cursor: pointer;
+  background-color: #6053dc;
+  color: #fff !important;
+  text-align: center;
+  font-size: 21px;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 30px;
+  margin: 10px 0;
+  display: block;
+  width: 100%;
+}
+
 .o-system-form .form-group {
   margin-bottom: 15px;
 }
