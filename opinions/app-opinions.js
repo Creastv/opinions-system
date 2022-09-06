@@ -22,10 +22,12 @@ const options = {
 const app = createApp({
   components: {
     VueMainComponent: Vue.defineAsyncComponent(() =>
-      loadModule('http://localhost/itrust/wp-content/plugins/opinions-system/opinions/vue-components/vue-main-component.vue', options)
+      // loadModule('http://localhost/itrust/wp-content/plugins/opinions-system/opinions/vue-components/vue-main-component.vue', options)
+      loadModule('http://itrust.crea.webd.pl/wp-content/plugins/opinions-system/opinions/vue-components/vue-main-component.vue', options)
     ),
     VueFooter: Vue.defineAsyncComponent(() =>
-      loadModule('http://localhost/itrust/wp-content/plugins/opinions-system/opinions/vue-components/vue-footer.vue', options)
+      //loadModule('http://localhost/itrust/wp-content/plugins/opinions-system/opinions/vue-components/vue-footer.vue', options)
+      loadModule('http://itrust.crea.webd.pl/wp-content/plugins/opinions-system/opinions/vue-components/vue-footer.vue', options)
     ),
   },
 }).mount('#opinnions');

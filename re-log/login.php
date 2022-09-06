@@ -22,8 +22,8 @@
                     <input class="form-control" name="pwd" id="user_password" type="password">
                 </div>
                 <div class="form-group col col-1">
-                    <div class="g-recaptcha brochure__form__captcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></div>
-                    <!-- <div class="g-recaptcha brochure__form__captcha" data-sitekey="6Le_WLwhAAAAAHilEH4trnb6OTffXBjb68BOeVtm"></div> -->
+                    <!-- <div class="g-recaptcha brochure__form__captcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></div> -->
+                    <div class="g-recaptcha brochure__form__captcha" data-sitekey="6Le_WLwhAAAAAHilEH4trnb6OTffXBjb68BOeVtm"></div>
                 </div>
                 <?php
                         ob_start();
@@ -58,8 +58,8 @@
     // Error
     }
     function reCaptcha($recaptcha){
-    $secret = "6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe";
-    //  $secret = "6Le_WLwhAAAAAI-wLBRU7yYMb-CF45lVlihUb9Ra";
+    // $secret = "6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe";
+     $secret = "6Le_WLwhAAAAAI-wLBRU7yYMb-CF45lVlihUb9Ra";
     $ip = $_SERVER['REMOTE_ADDR'];
 
     $postvars = array("secret"=>$secret, "response"=>$recaptcha, "remoteip"=>$ip);
