@@ -26,10 +26,10 @@
                     <div class="g-recaptcha brochure__form__captcha" data-sitekey="6Le_WLwhAAAAAHilEH4trnb6OTffXBjb68BOeVtm"></div>
                 </div>
                 <?php
-                        ob_start();
-                        do_action('login_form');
-                        echo ob_get_clean();
-                        ?>
+                    ob_start();
+                    do_action('login_form');
+                    echo ob_get_clean();
+                ?>
                 <?php wp_nonce_field('userLogin', 'formType'); ?>
                 <div class="form-group col col-1">
                    <button class="o-systm-btn login_user" type="submit">Zaloguj</button>
@@ -38,7 +38,7 @@
                    <p class="text-center">Nie posiadasz jeszcze konta? <a href="<?php echo esc_url( home_url( '/rejestracja/' ) ); ?>">  Zarejestruj się</a></p>
                 </div>
         </form>
-<?php } else {
+    <?php } else {
         echo '<p>Jesteś już zalogowany</p>';
         // wp_redirect(site_url('/panel-uzytkownika/'));
         $url = site_url('/panel-uzytkownika/');
@@ -50,31 +50,26 @@
       return $login_form;
   }
 
-    function reCaptcha($recaptcha){
-            // $secret = "6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe";
-            $secret = "6Le_WLwhAAAAAI-wLBRU7yYMb-CF45lVlihUb9Ra";
-            $ip = $_SERVER['REMOTE_ADDR'];
-
-            $postvars = array("secret"=>$secret, "response"=>$recaptcha, "remoteip"=>$ip);
-            $url = "https://www.google.com/recaptcha/api/siteverify";
-            $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL, $url);
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-            curl_setopt($ch, CURLOPT_TIMEOUT, 10);
-            curl_setopt($ch, CURLOPT_POSTFIELDS, $postvars);
-            $data = curl_exec($ch);
-            curl_close($ch);
-
-            return json_decode($data, true);
-        }
-
+function reCaptcha($recaptcha){
+    // $secret = "6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe";
+    $secret = "6Le_WLwhAAAAAI-wLBRU7yYMb-CF45lVlihUb9Ra";
+    $ip = $_SERVER['REMOTE_ADDR'];
+    $postvars = array("secret"=>$secret, "response"=>$recaptcha, "remoteip"=>$ip);
+    $url = "https://www.google.com/recaptcha/api/siteverify";
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $postvars);
+    $data = curl_exec($ch);
+    curl_close($ch);
+    return json_decode($data, true);
+}
 
 add_action('wp', 'wc_user_login_callback');
 
   function wc_user_login_callback() {
 
-
-      
       if (isset($_POST['formType']) && wp_verify_nonce($_POST['formType'], 'userLogin')) {
 
           global $errors_login;
@@ -82,34 +77,37 @@ add_action('wp', 'wc_user_login_callback');
           $uPassword = $_POST['pwd'];
           $redirect = $_POST['redirect'];
 
+          $recaptcha = $_POST['g-recaptcha-response'];
+          $res = reCaptcha($recaptcha);
 
-        $recaptcha = $_POST['g-recaptcha-response'];
-            $res = reCaptcha($recaptcha);
-            
-            if(!$res['success']){
-            $errors_login = '<strong>Error! </strong> reCaptcha';
-            }
-     
+          if ($uName == '' ) {
+              $errors_login .= '<strong>Error! </strong> Nazwa urzytkownika jest wymagana.,';
+          } 
+		  if ($uPassword == '') {
+              $errors_login .= '<strong>Error! </strong> Hasło jest wymagane,';
+          } 
+		  if ($res['success'] == false) {
+              $errors_login .= '<strong>Error! </strong> reCaptcha.,';
+		  } 
+		  
+		  $errors_login = trim($errors_login, ',');
+          $errors_login = str_replace(",", "<br/>", $errors_login);
 
-
-          if ($uName == '' && $uPassword != '') {
-              $errors_login = '<strong>Error! </strong> Nazwa urzytkownika jest wymagana.';
-          } elseif ($uName != '' && $uPassword == '') {
-              $errors_login = '<strong>Error! </strong> Hało jest wymagane.';
-          } elseif ($uName == '' && $uPassword == '') {
-              $errors_login = '<strong>Error! </strong> Nazwa urzytkownika i hasło są wymagane.';
-          } elseif ($uName != '' && $uPassword != '') {
-              $creds = array();
-              $creds['user_login'] = $uName;
-              $creds['user_password'] = $uPassword;
-              $creds['remember'] = false;
-              $user = wp_signon($creds, true);
-              if (is_wp_error($user)) {
-                  $errors_login = $user->get_error_message();
-              } else {
-                    wp_redirect(site_url('/panel-uzytkownika/'));
-                  exit;
-              }
-          }
+          if (empty($errors_login)) {
+			  
+			  if ($uName != '' && $uPassword != '') {
+				  $creds = array();
+				  $creds['user_login'] = $uName;
+				  $creds['user_password'] = $uPassword;
+				  $creds['remember'] = false;
+				  $user = wp_signon($creds, true);
+				  if (is_wp_error($user)) {
+					  $errors_login = $user->get_error_message();
+				  } else {
+						wp_redirect(site_url('/panel-uzytkownika/'));
+					  exit;
+				  }
+			  }
+		  }
       }
   }
