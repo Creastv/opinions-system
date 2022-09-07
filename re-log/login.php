@@ -76,7 +76,15 @@
 
   function wc_user_login_callback() {
       if (isset($_POST['formType']) && wp_verify_nonce($_POST['formType'], 'userLogin')) {
-        $recaptcha = $_POST['g-recaptcha-response'];
+        
+
+          global $errors_login;
+          $uName = $_POST['log'];
+          $uPassword = $_POST['pwd'];
+          $redirect = $_POST['redirect'];
+
+
+          $recaptcha = $_POST['g-recaptcha-response'];
             $res = reCaptcha($recaptcha);
             if(!$res['success']){
             
@@ -99,11 +107,6 @@
 
             return json_decode($data, true);
             }
-
-          global $errors_login;
-          $uName = $_POST['log'];
-          $uPassword = $_POST['pwd'];
-          $redirect = $_POST['redirect'];
 
           if ($uName == '' && $uPassword != '') {
               $errors_login = '<strong>Error! </strong> Nazwa urzytkownika jest wymagana.';
