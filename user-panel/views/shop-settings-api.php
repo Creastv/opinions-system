@@ -22,4 +22,4 @@ echo '<p>Sprawdź gdzie znaleść swoje klucze - <a href="#">Czytaj więcej</a><
 echo " <br>";
 }
 
-echo o_system_add_api();
+// echo o_system_add_api();
