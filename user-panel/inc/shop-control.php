@@ -1,8 +1,4 @@
 <?php 
- require_once plugin_dir_path( __FILE__ ) . '/controls-shop/shop-publish.php'; 
- require_once plugin_dir_path( __FILE__ ) . '/controls-shop/shop-view.php'; 
- require_once plugin_dir_path( __FILE__ ) . '/controls-shop/shop-draft.php';
-
 function o_system_control_shop(){
     $user = wp_get_current_user();
     $post = get_post( $user->ID );
