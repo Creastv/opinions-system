@@ -5,7 +5,7 @@
  require_once plugin_dir_path( __FILE__ ) . '/inc/edit-user.php';
  require_once plugin_dir_path( __FILE__ ) . '/inc/shop-inf.php';
  require_once plugin_dir_path( __FILE__ ) . '/inc/shop-api.php'; 
-  require_once plugin_dir_path( __FILE__ ) . '/inc/shop-control.php'; 
+//   require_once plugin_dir_path( __FILE__ ) . '/inc/shop-control.php'; 
   require_once plugin_dir_path( __FILE__ ) . '/inc/controls-shop/shop-api-delete.php';
  
  
