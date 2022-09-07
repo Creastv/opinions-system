@@ -50,20 +50,7 @@
   }
 
    
-
-  function wc_user_login_callback() {
-      if (isset($_POST['formType']) && wp_verify_nonce($_POST['formType'], 'userLogin')) {
-
-          global $errors_login;
-
-          $uName = $_POST['log'];
-          $uPassword = $_POST['pwd'];
-          $redirect = $_POST['redirect'];
-
-          $recaptcha = $_POST['g-recaptcha-response'];
-          $res = reCaptcha($recaptcha);
-
-        function reCaptcha($recaptcha){
+      function reCaptcha($recaptcha){
             // $secret = "6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe";
              $secret = "6Le_WLwhAAAAAI-wLBRU7yYMb-CF45lVlihUb9Ra";
             $ip = $_SERVER['REMOTE_ADDR'];
@@ -80,6 +67,19 @@
 
             return json_decode($data, true);
         }
+  function wc_user_login_callback() {
+      if (isset($_POST['formType']) && wp_verify_nonce($_POST['formType'], 'userLogin')) {
+
+          global $errors_login;
+
+          $uName = $_POST['log'];
+          $uPassword = $_POST['pwd'];
+          $redirect = $_POST['redirect'];
+
+          $recaptcha = $_POST['g-recaptcha-response'];
+          $res = reCaptcha($recaptcha);
+
+  
       if (!$res['success']) {
               $errors_login = '<strong>Error! </strong> Nazwa urzytkownika jest wymagana.';
       }
