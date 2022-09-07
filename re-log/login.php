@@ -50,15 +50,7 @@
       return $login_form;
   }
 
-   
-
-
-add_action('wp', 'wc_user_login_callback');
-
-  function wc_user_login_callback() {
-
-
-       function reCaptcha($recaptcha){
+    function reCaptcha($recaptcha){
             // $secret = "6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe";
             $secret = "6Le_WLwhAAAAAI-wLBRU7yYMb-CF45lVlihUb9Ra";
             $ip = $_SERVER['REMOTE_ADDR'];
@@ -75,6 +67,14 @@ add_action('wp', 'wc_user_login_callback');
 
             return json_decode($data, true);
         }
+
+
+add_action('wp', 'wc_user_login_callback');
+
+  function wc_user_login_callback() {
+
+
+      
       if (isset($_POST['formType']) && wp_verify_nonce($_POST['formType'], 'userLogin')) {
 
           global $errors_login;
