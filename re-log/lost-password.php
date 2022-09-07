@@ -31,14 +31,15 @@
                     ?>
                     <?php wp_nonce_field('userGetPassword', 'formType'); ?>
                 <div class="form-group col col-1">
-                    <button type="submit" class="o-systm-btn get_new_password">Odzyskaj hasło</button>
+                    <button type="submit" class="o-systm-btn ">Wyślij</button>
                 </div>
             </form>
         </div>
     </div>
-<?php
-      }
-
+<?php } else {
+          $url = site_url('/panel-uzytkownika/');
+          echo("<script>location.href = '".$url."'</script>");
+        }
       $forgot_pwd_form = ob_get_clean();
       return $forgot_pwd_form;
   }
