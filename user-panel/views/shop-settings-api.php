@@ -11,7 +11,7 @@ echo "<h4> Klucze twojego sklepu WooCommerce</h4>";
 echo "ID sklepu: <strong>" . $shop['id'] . "</strong><br>";
 echo "Klucz klienta: <strong> ***********" . substr($shop['kk'],-4) . "</strong><br>";
 echo "Klucz prywatny: <strong> ***********" . substr($shop['kp'],-4) . "</strong><br>";
-echo o_system_shope_api_delate();
+// echo o_system_shope_api_delate();
 echo "<h4>Edytuj klucze</h4>";
 echo " <br>";
 
