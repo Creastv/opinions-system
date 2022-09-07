@@ -6,62 +6,62 @@ function o_system_register_form_callback() {
     echo '<div class="o-system-container">';
     echo '<div class="o-system-form">';
     if (!is_user_logged_in()) {
+
         global $registrationError, $registrationSuccess;
 
         if (!empty($registrationError)) { ?>
-<div class="o-system-alert o-system--alert-danger">
-    <?php echo $registrationError; ?>
-</div>
-<?php } ?>
+            <div class="o-system-alert o-system--alert-danger">
+                <?php echo $registrationError; ?>
+            </div>
+        <?php } ?>
 
-<?php if (!empty($registrationSuccess)) { ?>
-<br />
-<div class="o-system-alert o-system--alert-success">
-    <?php echo $registrationSuccess; ?>
-</div>
-<?php } ?>
+        <?php if (!empty($registrationSuccess)) { ?>
+        <br />
+        <div class="o-system-alert o-system--alert-success">
+            <?php echo $registrationSuccess; ?>
+        </div>
+        <?php } ?>
 
+        <form method="post" class="row">
+            <div class="form-group col col-1">
+                <label for="user_name">Nazwa użytkownika</label>
+                <?php $user_name = isset($_POST['user_name']) ? $_POST['user_name'] : ''; ?>
+                <input class="form-control" type="text" name="user_name" id="user_name" value="<?php echo $user_name; ?>" />
+            </div>
+            <div class="form-group col col-1">
+                <label for="user_email">Adres email</label>
+                <?php $user_email = isset($_POST['user_email']) ? $_POST['user_email'] : ''; ?>
+                <input class="form-control" type="email" name="user_email" id="user_email" value="<?php echo $user_email; ?>" />
+            </div>
 
-<form method="post" class="row">
-    <div class="form-group col col-1">
-        <label for="user_name">Nazwa użytkownika</label>
-        <?php $user_name = isset($_POST['user_name']) ? $_POST['user_name'] : ''; ?>
-        <input class="form-control" type="text" name="user_name" id="user_name" value="<?php echo $user_name; ?>" />
-    </div>
-    <div class="form-group col col-1">
-        <label for="user_email">Adres email</label>
-        <?php $user_email = isset($_POST['user_email']) ? $_POST['user_email'] : ''; ?>
-        <input class="form-control" type="email" name="user_email" id="user_email" value="<?php echo $user_email; ?>" />
-    </div>
+            <div class="form-group col col-1">
+                <label for="user_password">Hasło</label>
+                <input class="form-control" type="password" name="user_password" id="user_password" />
+            </div>
 
-    <div class="form-group col col-1">
-        <label for="user_password">Hasło</label>
-        <input class="form-control" type="password" name="user_password" id="user_password" />
-    </div>
-
-    <div class="form-group col col-1">
-        <label for="user_cpassword">Powtórz hasło</label>
-        <input class="form-control" type="password" name="user_cpassword" id="user_cpassword" />
-    </div>
- <div class="form-group col col-1">
-                    <!-- <div class="g-recaptcha brochure__form__captcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></div> -->
-                    <div class="g-recaptcha brochure__form__captcha" data-sitekey="6Le_WLwhAAAAAHilEH4trnb6OTffXBjb68BOeVtm"></div>
-                </div>
-    <div class="form-group col col-1">
-        <?php
-                        ob_start();
-                        do_action('register_form');
-                        echo ob_get_clean();
-                    ?>
-    </div>
-    <div class="form-group col col-1">
-        <?php wp_nonce_field('userRegister', 'formType'); ?>
-        <button type="submit" class="o-systm-btn register_user">Zarejestruj się</button>
-    </div>
-    <div class="form-group col col-1">
-        <p class="text-center">Posiadasz już konto? <a href="<?php echo esc_url( home_url( '/logowanie/' ) ); ?>"> Zaloguj się</a></p>
-    </div>
-</form>
+            <div class="form-group col col-1">
+                <label for="user_cpassword">Powtórz hasło</label>
+                <input class="form-control" type="password" name="user_cpassword" id="user_cpassword" />
+            </div>
+            <div class="form-group col col-1">
+                <!-- <div class="g-recaptcha brochure__form__captcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></div> -->
+                <div class="g-recaptcha brochure__form__captcha" data-sitekey="6Le_WLwhAAAAAHilEH4trnb6OTffXBjb68BOeVtm"></div>
+            </div>
+            <div class="form-group col col-1">
+                <?php
+                                ob_start();
+                                do_action('register_form');
+                                echo ob_get_clean();
+                            ?>
+            </div>
+            <div class="form-group col col-1">
+                <?php wp_nonce_field('userRegister', 'formType'); ?>
+                <button type="submit" class="o-systm-btn register_user">Zarejestruj się</button>
+            </div>
+            <div class="form-group col col-1">
+                <p class="text-center">Posiadasz już konto? <a href="<?php echo esc_url( home_url( '/logowanie/' ) ); ?>"> Zaloguj się</a></p>
+            </div>
+        </form>
 <?php  } else {
           echo '<p>Jesteś już zalogowany</p>';
           // wp_redirect(site_url('/panel-uzytkownika/'));

@@ -10,6 +10,7 @@
 
 require_once plugin_dir_path( __FILE__ ) . '/re-log/registration.php';
 require_once plugin_dir_path( __FILE__ ) . '/re-log/login.php';
+require_once plugin_dir_path( __FILE__ ) . '/re-log/lost-password.php';
 require_once plugin_dir_path( __FILE__ ) . '/user-panel/panel.php';
 require_once plugin_dir_path( __FILE__ ) . '/shops/cpt.php';
 
@@ -47,10 +48,10 @@ add_action('wp_enqueue_scripts','o_system_reg_frond');
                 'title' => __( 'Panel użytkownika', 'o-system' ),
                 'content' => '[o-system-info]'
             ),
-            // 'member-account-lostpassword' => array(
-            //     'title' => __( 'Lost password', 'o-system' ),
-            //     'content' => '[o-system-pwd-form]'
-            // ),
+            'member-account-lostpassword' => array(
+                'title' => __( 'Odzyskiwanie hasła', 'o-system' ),
+                'content' => '[o-system-forgot-pwd-form]'
+            ),
             'member-account-changepassword' => array(
                 'title' => __( 'Sklepy', 'o-system' ),
             ),
