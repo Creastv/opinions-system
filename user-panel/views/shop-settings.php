@@ -1,2 +1,1 @@
-
-<?php echo o_system_add_shop(); ?>
+<?php echo o_system_add_shop();

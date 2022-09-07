@@ -1,7 +1,5 @@
 <?php 
-
-
-$user = wp_get_current_user();
+// $user = wp_get_current_user();
 $shop = array (
     'id'  => $current_user->id,
     'kk'  => get_the_author_meta( 'customer-key', $current_user->id ),
@@ -24,11 +22,4 @@ echo '<p>Sprawdź gdzie znaleść swoje klucze - <a href="#">Czytaj więcej</a><
 echo " <br>";
 }
 
-
-
 echo o_system_add_api();
-
-
-
-
-?>

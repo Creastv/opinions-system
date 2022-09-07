@@ -1,22 +1,19 @@
 <?php 
-$user = wp_get_current_user();
-$post = get_post($user->ID);
+$post = get_post($current_user->ID);
 $shop = [
-    'logo'       =>  get_the_post_thumbnail( $user->id, 'thumbnail' ),
+    'logo'       =>  get_the_post_thumbnail( $current_user->id, 'thumbnail' ),
     'name'       =>  $post->post_title,
-    'desc'       =>  get_post_meta( $user->id, 'shop-desc', true ),
-    'phone'      =>  get_post_meta( $user->id, 'shop-phone', true ),
-    'email'      =>  get_post_meta( $user->id, 'shop-email', true ),
-    'url'        =>  get_post_meta( $user->id, 'shop-url', true ),
-    'address'    =>  get_post_meta( $user->id, 'shop-address', true ),
-    'address2'   =>  get_post_meta( $user->id, 'shop-address2', true ),
-    'city'       =>  get_post_meta( $user->id, 'shop-city', true ),
-    'zip'        =>  get_post_meta( $user->id, 'shop-zip-code', true ),
+    'desc'       =>  get_post_meta( $current_user->id, 'shop-desc', true ),
+    'phone'      =>  get_post_meta( $current_user->id, 'shop-phone', true ),
+    'email'      =>  get_post_meta( $current_user->id, 'shop-email', true ),
+    'url'        =>  get_post_meta( $current_user->id, 'shop-url', true ),
+    'address'    =>  get_post_meta( $current_user->id, 'shop-address', true ),
+    'address2'   =>  get_post_meta( $current_user->id, 'shop-address2', true ),
+    'city'       =>  get_post_meta( $current_user->id, 'shop-city', true ),
+    'zip'        =>  get_post_meta( $current_user->id, 'shop-zip-code', true ),
 ]; 
 
-
 echo o_system_control_shop();
-
 
 
 if($shop['logo']){

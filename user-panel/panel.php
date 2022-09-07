@@ -13,6 +13,7 @@
  add_shortcode('o-system-account-info', 'lr_seller_account_callback');
   function lr_seller_account_callback() {
     ob_start();
+    global $current_user;
     if ( is_user_logged_in() ) { ?>
     
     <div class="user-panel">

@@ -1,5 +1,4 @@
 <?php
-  add_shortcode('o-system-add-api', 'o_system_add_api');
   function o_system_add_api() {
     ob_start();
 

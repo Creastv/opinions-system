@@ -1,4 +1,4 @@
 <h4>Edycja profilu</h4>
-<?php  echo do_shortcode('[o-system-edit-profil]'); ?>
+<?php  echo o_system_edit_profil_user(); ?>
 <h4>Zmiana hasła</h4>
-<?php  echo do_shortcode('[o-system-change-pwd-form]'); ?>
+<?php  echo o_system_change_pwd_form();

@@ -1,5 +1,5 @@
 <?php 
-global $current_user;
+
 wp_get_current_user();
 ?>
 <h4><strong>Witam <?php echo $current_user->user_login; ?></strong></h4>

@@ -1,7 +1,6 @@
 <?php
-   add_shortcode('o-system-change-pwd-form', 'o_system_change_pwd_form_callback');
-
-  function o_system_change_pwd_form_callback() {
+  // add_shortcode('o-system-change-pwd-form', 'o_system_change_pwd_formk');
+  function o_system_change_pwd_form() {
       ob_start();
 
       if (is_user_logged_in()) {

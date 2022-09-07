@@ -1,6 +1,5 @@
 <?php
-
-   add_shortcode('o-system-edit-profil', 'o_system_edit_profil_user');
+ //  add_shortcode('o-system-edit-profil', 'o_system_edit_profil_user');
   function o_system_edit_profil_user() {
     ob_start();
     
