@@ -1,6 +1,6 @@
 
 <div id="opinnions">
-    <vue-main-component kk=''></vue-main-component>
+    <vue-main-component></vue-main-component>
     <vue-footer></vue-footer>
 </div>
 
