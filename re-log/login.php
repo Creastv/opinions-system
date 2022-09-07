@@ -56,6 +56,25 @@
 add_action('wp', 'wc_user_login_callback');
 
   function wc_user_login_callback() {
+
+
+       function reCaptcha($recaptcha){
+            // $secret = "6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe";
+            $secret = "6Le_WLwhAAAAAI-wLBRU7yYMb-CF45lVlihUb9Ra";
+            $ip = $_SERVER['REMOTE_ADDR'];
+
+            $postvars = array("secret"=>$secret, "response"=>$recaptcha, "remoteip"=>$ip);
+            $url = "https://www.google.com/recaptcha/api/siteverify";
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, $url);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $postvars);
+            $data = curl_exec($ch);
+            curl_close($ch);
+
+            return json_decode($data, true);
+        }
       if (isset($_POST['formType']) && wp_verify_nonce($_POST['formType'], 'userLogin')) {
 
           global $errors_login;
@@ -63,29 +82,14 @@ add_action('wp', 'wc_user_login_callback');
           $uPassword = $_POST['pwd'];
           $redirect = $_POST['redirect'];
 
-          
- $recaptcha = $_POST['g-recaptcha-response'];
-    $res = reCaptcha($recaptcha);
-    if(!$res['success']){
-      $errors_login = '<strong>Error! </strong> Nazwa urzytkownika jest wymagana.';
-    }
-    function reCaptcha($recaptcha){
-    // $secret = "6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe";
-     $secret = "6Le_WLwhAAAAAI-wLBRU7yYMb-CF45lVlihUb9Ra";
-    $ip = $_SERVER['REMOTE_ADDR'];
 
-    $postvars = array("secret"=>$secret, "response"=>$recaptcha, "remoteip"=>$ip);
-    $url = "https://www.google.com/recaptcha/api/siteverify";
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $url);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-    curl_setopt($ch, CURLOPT_TIMEOUT, 10);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, $postvars);
-    $data = curl_exec($ch);
-    curl_close($ch);
-
-    return json_decode($data, true);
-    }
+        $recaptcha = $_POST['g-recaptcha-response'];
+            $res = reCaptcha($recaptcha);
+            
+            if(!$res['success']){
+            $errors_login = '<strong>Error! </strong> reCaptcha';
+            }
+     
 
 
           if ($uName == '' && $uPassword != '') {
