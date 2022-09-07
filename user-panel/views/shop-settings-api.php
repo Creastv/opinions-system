@@ -1,5 +1,4 @@
 <?php 
-// $user = wp_get_current_user();
 $shop = array (
     'id'  => $current_user->id,
     'kk'  => get_the_author_meta( 'customer-key', $current_user->id ),
@@ -21,5 +20,4 @@ echo "<h4> Dodaj klucze REAST API Twojego sklepu WooCommerce</h4>";
 echo '<p>Sprawdź gdzie znaleść swoje klucze - <a href="#">Czytaj więcej</a></p>';
 echo " <br>";
 }
-
-// echo o_system_add_api();
+ echo o_system_add_api();
