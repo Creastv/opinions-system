@@ -1,8 +1,7 @@
 <?php 
 function o_system_draft_shop(){
-   
-        $user = wp_get_current_user();
-        $post = get_post( $user->ID );
+   ob_start();
+        $post = get_post( $current_user->ID );
         $stat =  get_post_status($post);
         
        
@@ -10,7 +9,7 @@ function o_system_draft_shop(){
             if(isset($_POST['draft-shop'])) {
                 $update_shop = array(
                     'post_type' => 'shops',
-                    'ID' => $user->ID,
+                    'ID' => $current_user->ID,
                     'post_status' => 'draft',
                 );
                 wp_update_post($update_shop);

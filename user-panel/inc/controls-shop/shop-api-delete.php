@@ -1,7 +1,7 @@
 <?php
 function o_system_shope_api_delate(){
-    $user = wp_get_current_user();
-    $post = get_post( $user->ID );
+       ob_start();
+    $post = get_post( $current_user->ID );
     ?>
     <form method="post">
             <input type="submit" name="shopAPIDelete" class="o-systm-btn" value="Usuń klucze"/>
@@ -13,8 +13,8 @@ function o_system_shope_api_delate(){
         $shop_ck = '';
         $shop_pk = '';
         
-        update_user_meta( $user->ID, 'customer-key',  $shop_ck); 
-        update_user_meta( $user->ID, 'private-key',  $shop_pk); 
+        update_user_meta( $current_user->ID, 'customer-key',  $shop_ck); 
+        update_user_meta( $current_user->ID, 'private-key',  $shop_pk); 
         echo "<meta http-equiv='refresh' content='0'>";
     } ?>
 <?php 

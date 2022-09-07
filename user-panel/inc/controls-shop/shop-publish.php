@@ -1,15 +1,11 @@
 <?php 
 function o_system_publish_shop(){
-   
-        $user = wp_get_current_user();
-        $post = get_post( $user->ID );
-
-        
-      
+    ob_start();
+        $post = get_post( $current_user->ID );
             if(isset($_POST['publish-shop'])) {
                 $update_shop = array(
                     'post_type' => 'shops',
-                    'ID' => $user->ID,
+                    'ID' => $current_user->ID,
                     'post_status' => 'pending',
                     'edit_date' => true,
                     'post_date' => $_POST['post_date']
