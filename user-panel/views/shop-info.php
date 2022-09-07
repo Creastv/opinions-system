@@ -13,7 +13,7 @@ $shop = [
     'zip'        =>  get_post_meta( $current_user->id, 'shop-zip-code', true ),
 ]; 
 
-// echo o_system_control_shop();
+echo o_system_control_shop();
 
 
 if($shop['logo']){
