@@ -1,7 +1,7 @@
 <?php 
 function o_system_control_shop(){
-    $user = wp_get_current_user();
-    $post = get_post( $user->ID );
+    ob_start();
+    $post = get_post( $current_user->ID );
     $stat =  get_post_status($post);
 
     if ( $stat == 'pending' ) { 
@@ -22,4 +22,6 @@ function o_system_control_shop(){
        echo o_system_view_shop();
 
     } 
+    $control_shop = ob_get_clean();
+    return $control_shop;
 }
