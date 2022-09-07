@@ -1,6 +1,6 @@
 <?php
    add_shortcode('o-system-login-form', 'o_systemlogin_form_callback');
-
+ 
   function o_systemlogin_form_callback() {
     ob_start();
     echo '<div class="o-system-container">';
@@ -97,6 +97,8 @@
       $login_form = ob_get_clean();
       return $login_form;
   }
+add_action('wp', 'wc_user_login_callback');
+
 
     // $recaptcha = $_POST['g-recaptcha-response'];
     // $res = reCaptcha($recaptcha);
