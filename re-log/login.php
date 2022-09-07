@@ -49,13 +49,13 @@
       return $login_form;
   }
 
-    $recaptcha = $_POST['g-recaptcha-response'];
-    $res = reCaptcha($recaptcha);
-    if($res['success']){
-    add_action('wp', 'wc_user_login_callback');
-    }else{
-     $errors_login = '<strong>Error! </strong> Nie jestem robotem';
-    }
+    // $recaptcha = $_POST['g-recaptcha-response'];
+    // $res = reCaptcha($recaptcha);
+    // if($res['success']){
+    // add_action('wp', 'wc_user_login_callback');
+    // }else{
+    //  $errors_login = '<strong>Error! </strong> Nie jestem robotem';
+    // }
     function reCaptcha($recaptcha){
     // $secret = "6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe";
      $secret = "6Le_WLwhAAAAAI-wLBRU7yYMb-CF45lVlihUb9Ra";
@@ -81,6 +81,14 @@
           $uName = $_POST['log'];
           $uPassword = $_POST['pwd'];
           $redirect = $_POST['redirect'];
+
+            $recaptcha = $_POST['g-recaptcha-response'];
+            $res = reCaptcha($recaptcha);
+            if(!$res['success']){
+           
+            $errors_login = '<strong>Error! </strong> Nie jestem robotem';
+            }
+
 
           if ($uName == '' && $uPassword != '') {
               $errors_login = '<strong>Error! </strong> Nazwa urzytkownika jest wymagana.';
