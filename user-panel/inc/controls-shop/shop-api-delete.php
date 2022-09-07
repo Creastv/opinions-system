@@ -1,6 +1,7 @@
 <?php
 function o_system_shope_api_delate(){
-       ob_start();
+    global $current_user;
+    ob_start();
     $post = get_post( $current_user->ID );
     ?>
     <form method="post">

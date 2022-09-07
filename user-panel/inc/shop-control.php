@@ -1,6 +1,7 @@
 <?php 
 function o_system_control_shop(){
     ob_start();
+  
     $post = get_post( $current_user->ID );
     $stat =  get_post_status($post);
 

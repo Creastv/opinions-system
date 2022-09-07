@@ -3,7 +3,7 @@
     ob_start();
 
     if ( is_user_logged_in() ) {
-    $user = wp_get_current_user();
+    global $current_user;
     global $registrationErrorAPI;
     ?>
     <div class="o-system-container">
@@ -51,7 +51,7 @@ add_action('wp', 'o_system_add_api_callback');
 
 function o_system_add_api_callback() {
 
-    $user = wp_get_current_user();
+     global $current_user;
 
     if (isset($_POST['shopIp']) && wp_verify_nonce($_POST['shopIp'], 'addShopIp')) {
         global $registrationErrorAPI;
@@ -65,8 +65,8 @@ function o_system_add_api_callback() {
               $registrationErrorAPI .= '<strong>Error! </strong> Wprowadź <b> Klucz Prywatny</b><br>';
         }
         if (empty($registrationErrorAPI)) {
-        update_user_meta( $user->ID, 'customer-key',  $shop_ck); 
-        update_user_meta( $user->ID, 'private-key',  $shop_pk); 
+        update_user_meta( $current_user->ID, 'customer-key',  $shop_ck); 
+        update_user_meta( $current_user->ID, 'private-key',  $shop_pk); 
         }
 
 

@@ -1,5 +1,6 @@
 <?php 
 function o_system_draft_shop(){
+   global $current_user;
    ob_start();
         $post = get_post( $current_user->ID );
         $stat =  get_post_status($post);

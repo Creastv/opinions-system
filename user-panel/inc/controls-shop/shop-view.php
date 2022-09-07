@@ -1,5 +1,6 @@
 <?php 
 function o_system_view_shop(){
+  global $current_user;
   ob_start();
   echo '<a href=" ' . get_permalink( $current_user->id ) . ' " target="_blank" class="o-systm-btn">Idź do wizytówki sklepu</a> ';
   $view_shop = ob_get_clean();

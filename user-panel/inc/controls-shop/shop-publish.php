@@ -1,5 +1,6 @@
 <?php 
 function o_system_publish_shop(){
+    global $current_user;
     ob_start();
         $post = get_post( $current_user->ID );
             if(isset($_POST['publish-shop'])) {
