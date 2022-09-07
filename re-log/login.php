@@ -78,9 +78,8 @@
       if (isset($_POST['formType']) && wp_verify_nonce($_POST['formType'], 'userLogin')) {
         $recaptcha = $_POST['g-recaptcha-response'];
             $res = reCaptcha($recaptcha);
-            if($res['success']){
-            add_action('wp', 'wc_user_login_callback');
-            }else{
+            if(!$res['success']){
+            
             $errors_login = '<strong>Error! </strong> Nazwa urzytkownika i hasło są wymagane';
             }
             function reCaptcha($recaptcha){
