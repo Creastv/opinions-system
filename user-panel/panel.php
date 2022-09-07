@@ -11,12 +11,12 @@
  require_once plugin_dir_path( __FILE__ ) . '/inc/shop-control.php'; 
 //   require_once plugin_dir_path( __FILE__ ) . '/inc/controls-shop/shop-api-delete.php';
  
- 
+  global $current_user;
 
  add_shortcode('o-system-account-info', 'lr_seller_account_callback');
   function lr_seller_account_callback() {
     ob_start();
-    global $current_user;
+   
     if ( is_user_logged_in() ) { ?>
     
     <div class="user-panel">
