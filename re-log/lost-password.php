@@ -14,7 +14,7 @@
             </div>
         <?php } ?>
         <?php if (!empty($getPasswordSuccess)) { ?>
-        <div class="alert alert-success">
+         <div class="o-system-alert o-system--alert-success">
             <?php echo $getPasswordSuccess; ?>
         </div>
         <?php } ?>
@@ -54,12 +54,15 @@
       if (isset($_POST['formType']) && wp_verify_nonce($_POST['formType'], 'userGetPassword')) {
           global $getPasswordError, $getPasswordSuccess;
 
+          $$getPasswordError = trim($$getPasswordError, ',');
+          $$getPasswordError = str_replace(",", "<br/>", $$getPasswordError);
+
           $email = trim($_POST['user_login']);
           $recaptcha = $_POST['g-recaptcha-response'];
           $res = reCaptcha($recaptcha);
 
           if (empty($email)) {
-              $getPasswordError .= '<strong>Error! </strong>Wprowadź adres email.';
+              $getPasswordError .= '<strong>Error! </strong>Wprowadź adres email. ';
           } else if (!is_email($email)) {
               $getPasswordError .= '<strong>Error! </strong>Nie poprawny adres email.';
           } else if (!email_exists($email)) {
@@ -91,14 +94,14 @@
 
                   $mail = wp_mail($to, $subject, $message, $headers);
                   if ($mail) {
-                      $getPasswordSuccess = '<strong>Success! </strong>Check your email address for you new password.';
+                      $getPasswordSuccess = '<strong>Success! </strong>Sprawdź swój adres e-mail.';
                   }
               } else {
-                  $getPasswordError = '<strong>Error! </strong>Oops something went wrong.';
+                  $getPasswordError = '<strong>Error! </strong>Oops coś poszło nie tak, spróbuj za chwilę.';
               }
           }
           if ($res['success'] == false) {
-               $getPasswordError .= '<strong>Error! </strong> reCaptcha.,';
+               $getPasswordError .= '<strong>Error! </strong> reCaptcha.';
            }
       }
   }
