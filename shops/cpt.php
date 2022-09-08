@@ -40,7 +40,27 @@ function o_system_post_types() {
 }
 add_action( 'init', 'o_system_post_types' );
 
+function o_system_post_types_taxonomy() {  
+    register_taxonomy(  
+        'shop-cat',
+        'shops', 
+        array(  
+			'hierarchical' => true,  
+            'show_admin_column' => true,
+            'query_var' => true,
+			'has_archive' => true,
+            'show_in_rest'          => true, 
+            'label' => 'Category',  	
+			'rewrite' => array('slug' => 'cat-shop')
+        )  
+    );  
+}  
+add_action( 'init', 'o_system_post_types_taxonomy');
+
+
+
 require_once plugin_dir_path( __FILE__ ) . '/custom-fields.php';
+
 
 
 add_filter( 'single_template', 'o_system_single_shop_template' );

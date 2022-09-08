@@ -100,7 +100,7 @@
 
                   $mail = wp_mail($to, $subject, $message, $headers);
                   if ($mail) {
-                      $getPasswordSuccess = '<strong>Success! </strong>Sprawdź swój adres e-mail.,';
+                      $getPasswordSuccess = '<strong>Success! </strong>Sprawdź swój adres e-mail.';
                   }
               } else {
                   $getPasswordError = '<strong>Error! </strong>Oops coś poszło nie tak, spróbuj za chwilę.,';

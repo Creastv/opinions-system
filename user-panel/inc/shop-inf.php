@@ -2,7 +2,7 @@
   function o_system_add_shop() { 
     ob_start();
     if ( is_user_logged_in() ) {
-    global $registrationError, $registrationSuccess; 
+    global $addingShopError, $addingShopSuccess; 
 
     $user = wp_get_current_user();
     $post = get_post($user->ID);
@@ -21,15 +21,15 @@
 ?>
     <div class="o-system-container">
         <div class="o-system-form">
-        <?php  if (!empty($registrationError)) { ?>
+        <?php  if (!empty($addingShopError)) { ?>
             <div class="o-system-alert o-system--alert-danger">
-                <?php echo $registrationError; ?>
+                <?php echo $addingShopError; ?>
             </div>
         <?php } ?>
 
-        <?php if (!empty($registrationSuccess)) { ?>
+        <?php if (!empty($addingShopSuccess)) { ?>
         <div class="o-system-alert o-system--alert-success">
-            <?php echo $registrationSuccess; ?>
+            <?php echo $addingShopSuccess; ?>
         </div>
         <?php } ?>
 
@@ -83,6 +83,7 @@
                 <label for="shop-zip-code">Kod pocztowy</label>
                 <input  class="form-control" type="text" name="shop-zip-code" id="shop-zip-code" value="<?php echo $shop['zip']; ?>" />
             </div>
+          
             <?php
                 ob_start();
                 do_action('add_shop');
@@ -110,7 +111,7 @@ function o_system_add_shop_callback() {
     $post = get_post($user->ID);
 
     if (isset($_POST['shop']) && wp_verify_nonce($_POST['shop'], 'addShop')) {
-        global $registrationError, $registrationSuccess;
+        global $addingShopError, $addingShopSuccess;
 
         $shop_logo= trim($_POST['file']);
         $shop_name = trim($_POST['shop-name']);
@@ -125,24 +126,20 @@ function o_system_add_shop_callback() {
         $shop_zip = trim($_POST['shop-zip-code']);
 
         if ($shop_name == '') {
-            $registrationError .= '<strong>Error! </strong> <b>Nazwa sklepu</b> jest polem wymaganym ,';
+            $addingShopError .= '<strong>Error! </strong> <b>Nazwa sklepu</b> jest polem wymaganym ,';
         }
 
         if ($shop_des == '') {
-            $registrationError .= '<strong>Error! </strong> <b>Opis sklepu</b> jest polem wymaganym ,';
+            $addingShopError .= '<strong>Error! </strong> <b>Opis sklepu</b> jest polem wymaganym ,';
         }
 
         if ($shop_url == '') {
-            $registrationError .= '<strong>Error! </strong> <b>URL sklepu </b> jest polem wymaganym ,';
+            $addingShopError .= '<strong>Error! </strong> <b>URL sklepu </b> jest polem wymaganym ,';
         }
-        
-
         if ($shop_logo == '' && $_FILES['file']['size'] == 0 && !has_post_thumbnail( $user->ID ) ) {
-             
-               $registrationError .= '<strong>Error! </strong> <b>LOgo </b> jest polem wymaganym ,';
-
+               $addingShopError .= '<strong>Error! </strong> <b>LOgo </b> jest polem wymaganym ,';
         }
-           if ($_FILES['file']['size'] !== 0 ){
+     if ($_FILES['file']['size'] !== 0 ){
                 
                 require_once( ABSPATH . 'wp-admin/includes/post.php' );
                 require_once( ABSPATH . 'wp-admin/includes/image.php' );
@@ -150,12 +147,15 @@ function o_system_add_shop_callback() {
                 require_once( ABSPATH . 'wp-admin/includes/media.php' );
                 $attachment_id = media_handle_upload( 'file', $user->ID );
                 set_post_thumbnail( $user->ID, $attachment_id );
-            } 
-        $registrationError = trim($registrationError, ',');
-        $registrationError = str_replace(",", "<br/>", $registrationError);
-        if (empty($registrationError)) {
+        
+        } 
+
+        $addingShopError = trim($addingShopError, ',');
+        $addingShopError = str_replace(",", "<br/>", $addingShopError);
+
+        if (empty($addingShopError)) {
             if (get_post_status($user->ID) ) {
-                
+
                 $post = get_post( $user->ID );
                 $stat =  get_post_status($post);
 
@@ -177,6 +177,10 @@ function o_system_add_shop_callback() {
                         )
                 );
                 $my_post= wp_insert_post($my_post);
+                wp_update_term( 1, 'category', array(
+                    'name' => 'Non Catégorisé',
+                    'slug' => 'non-categorise'
+                ) );
             } else {
                 $my_post = array(
                         'import_id' => $user->ID,
@@ -198,9 +202,9 @@ function o_system_add_shop_callback() {
             }
         }
         if (is_wp_error($errors)) {
-                $registrationError = $errors->get_error_message();
+            $addingShopError = $errors->get_error_message();
         } else {
-                $changePasswordSuccess = 'Password is successfully updated.';  
+            $addingShopSuccess = 'Wizytówka została zaktualizowana.';  
         }
         
     }

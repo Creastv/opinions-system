@@ -4,9 +4,6 @@ function o_system_draft_shop(){
    ob_start();
         $post = get_post( $current_user->ID );
         $stat =  get_post_status($post);
-        
-       
-         
             if(isset($_POST['draft-shop'])) {
                 $update_shop = array(
                     'post_type' => 'shops',
@@ -16,7 +13,6 @@ function o_system_draft_shop(){
                 wp_update_post($update_shop);
                 echo "<meta http-equiv='refresh' content='0'>";
             }
-        
     ?>
     <form method="post">
             <input type="submit" name="draft-shop" class="o-systm-btn" value="Zapisz jako szkic"/>

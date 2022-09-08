@@ -14,8 +14,6 @@ function o_system_publish_shop(){
                 wp_update_post($update_shop);
                 echo "<meta http-equiv='refresh' content='0'>";
             }
-  
-    
     ?>
     <form method="post">
         <input type="submit" name="publish-shop" class="o-systm-btn" value="Opublikuj sklep"/>

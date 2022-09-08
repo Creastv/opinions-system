@@ -1,7 +1,7 @@
 <?php 
 function o_system_control_shop(){
     ob_start();
-  
+    global $current_user;
     $post = get_post( $current_user->ID );
     $stat =  get_post_status($post);
 
@@ -15,14 +15,14 @@ function o_system_control_shop(){
 
     if($stat == 'publish') {
         echo o_system_view_shop();
-        echo o_system_draft_shop();
+        // echo o_system_draft_shop();
     } elseif($stat == 'pending') {
         echo o_system_view_shop();
     } else {
         echo o_system_publish_shop();
        echo o_system_view_shop();
-
     } 
+    
     $control_shop = ob_get_clean();
     return $control_shop;
 }

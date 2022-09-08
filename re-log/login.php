@@ -86,7 +86,7 @@ add_action('wp', 'wc_user_login_callback');
 		  if ($uPassword == '') {
               $errors_login .= '<strong>Error! </strong> Hasło jest wymagane,';
           } 
-		  if ($res['success'] == false) {
+		  if (!$res['success'] == false) {
               $errors_login .= '<strong>Error! </strong> reCaptcha.,';
 		  } 
 		  
