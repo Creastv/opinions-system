@@ -66,7 +66,14 @@
               $getPasswordError .= '<strong>Error! </strong>Nie poprawny adres email.,';
           } else if (!email_exists($email)) {
               $getPasswordError .= '<strong>Error! </strong>Użytkownik o tym adresie email nie istnieje.,';
-          } else {
+          }
+           if ($res['success'] == false) {
+               $getPasswordError .= '<strong>Error! </strong> reCaptcha.';
+           }
+            $getPasswordError = trim($getPasswordError, ',');
+            $getPasswordError = str_replace(",", "<br/>", $getPasswordError); 
+
+          if (empty($getPasswordError)) {
 
               // lets generate our new password
               $random_password = wp_generate_password(12, false);
@@ -99,10 +106,6 @@
                   $getPasswordError = '<strong>Error! </strong>Oops coś poszło nie tak, spróbuj za chwilę.,';
               }
           }
-          if ($res['success'] == false) {
-               $getPasswordError .= '<strong>Error! </strong> reCaptcha.';
-           }
-                     $getPasswordError = trim($getPasswordError, ',');
-          $getPasswordError = str_replace(",", "<br/>", $getPasswordError);
+         
       }
   }
