@@ -54,8 +54,7 @@
       if (isset($_POST['formType']) && wp_verify_nonce($_POST['formType'], 'userGetPassword')) {
           global $getPasswordError, $getPasswordSuccess;
 
-          $$getPasswordError = trim($$getPasswordError, ',');
-          $$getPasswordError = str_replace(",", "<br/>", $$getPasswordError);
+
 
           $email = trim($_POST['user_login']);
           $recaptcha = $_POST['g-recaptcha-response'];
@@ -103,5 +102,7 @@
           if ($res['success'] == false) {
                $getPasswordError .= '<strong>Error! </strong> reCaptcha.';
            }
+                     $getPasswordError = trim($getPasswordError, ',');
+          $getPasswordError = str_replace(",", "<br/>", $getPasswordError);
       }
   }
