@@ -64,8 +64,6 @@
               $getPasswordError .= '<strong>Error! </strong>Nie poprawny adres email.';
           } else if (!email_exists($email)) {
               $getPasswordError .= '<strong>Error! </strong>Użytkownik o tym adresie email nie istnieje.';
-          } elseif ($res['success'] == false) {
-               $registrationError .= '<strong>Error! </strong> reCaptcha.,';
           } else {
 
               // lets generate our new password
@@ -99,5 +97,8 @@
                   $getPasswordError = '<strong>Error! </strong>Oops something went wrong.';
               }
           }
+          if ($res['success'] == false) {
+               $getPasswordError .= '<strong>Error! </strong> reCaptcha.,';
+           }
       }
   }
