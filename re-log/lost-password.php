@@ -62,11 +62,11 @@
           $res = reCaptcha($recaptcha);
 
           if (empty($email)) {
-              $getPasswordError .= '<strong>Error! </strong>Wprowadź adres email. ';
+              $getPasswordError .= '<strong>Error! </strong>Wprowadź adres email.,';
           } else if (!is_email($email)) {
-              $getPasswordError .= '<strong>Error! </strong>Nie poprawny adres email.';
+              $getPasswordError .= '<strong>Error! </strong>Nie poprawny adres email.,';
           } else if (!email_exists($email)) {
-              $getPasswordError .= '<strong>Error! </strong>Użytkownik o tym adresie email nie istnieje.';
+              $getPasswordError .= '<strong>Error! </strong>Użytkownik o tym adresie email nie istnieje.,';
           } else {
 
               // lets generate our new password
@@ -94,10 +94,10 @@
 
                   $mail = wp_mail($to, $subject, $message, $headers);
                   if ($mail) {
-                      $getPasswordSuccess = '<strong>Success! </strong>Sprawdź swój adres e-mail.';
+                      $getPasswordSuccess = '<strong>Success! </strong>Sprawdź swój adres e-mail.,';
                   }
               } else {
-                  $getPasswordError = '<strong>Error! </strong>Oops coś poszło nie tak, spróbuj za chwilę.';
+                  $getPasswordError = '<strong>Error! </strong>Oops coś poszło nie tak, spróbuj za chwilę.,';
               }
           }
           if ($res['success'] == false) {
