@@ -24,12 +24,16 @@
                     <?php $user_login = isset($_POST['user_login']) ? $_POST['user_login'] : ''; ?>
                     <input class="form-control" type="text" name="user_login" id="user_login" value="<?php echo $user_login; ?>" />
                 </div>
-                    <?php
-                        ob_start();
-                        do_action('lostpassword_form');
-                        echo ob_get_clean();
-                    ?>
-                    <?php wp_nonce_field('userGetPassword', 'formType'); ?>
+                <div class="form-group col col-1">
+                    <!-- <div class="g-recaptcha brochure__form__captcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></div> -->
+                    <div class="g-recaptcha brochure__form__captcha" data-sitekey="6Le_WLwhAAAAAHilEH4trnb6OTffXBjb68BOeVtm"></div>
+                </div>
+                <?php
+                    ob_start();
+                    do_action('lostpassword_form');
+                    echo ob_get_clean();
+                ?>
+                <?php wp_nonce_field('userGetPassword', 'formType'); ?>
                 <div class="form-group col col-1">
                     <button type="submit" class="o-systm-btn ">Wyślij</button>
                 </div>
@@ -51,13 +55,17 @@
           global $getPasswordError, $getPasswordSuccess;
 
           $email = trim($_POST['user_login']);
+          $recaptcha = $_POST['g-recaptcha-response'];
+          $res = reCaptcha($recaptcha);
 
           if (empty($email)) {
-              $getPasswordError = '<strong>Error! </strong>Wprowadź adres email.';
+              $getPasswordError .= '<strong>Error! </strong>Wprowadź adres email.';
           } else if (!is_email($email)) {
-              $getPasswordError = '<strong>Error! </strong>Nie poprawny adres email.';
+              $getPasswordError .= '<strong>Error! </strong>Nie poprawny adres email.';
           } else if (!email_exists($email)) {
-              $getPasswordError = '<strong>Error! </strong>Użytkownik o tym adresie email nie istnieje.';
+              $getPasswordError .= '<strong>Error! </strong>Użytkownik o tym adresie email nie istnieje.';
+          } elseif ($res['success'] == false) {
+               $registrationError .= '<strong>Error! </strong> reCaptcha.,';
           } else {
 
               // lets generate our new password
@@ -71,18 +79,16 @@
                   'user_pass' => $random_password
                       )
               );
-
               // if  update user return true then lets send user an email containing the new password
               if ($update_user) {
                   $to = $email;
                   $subject = 'Your new password';
                   $sender = get_bloginfo('name');
-
                   $message = 'Your new password is: ' . $random_password;
-                   $headers[] = 'MIME-Version: 1.0' . "\r\n";
-                    $headers[] = 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-                    $headers[] = "X-Mailer: PHP \r\n";
-                    $headers[] = 'From: ' . $sender . ' < ' . $email . '>' . "\r\n";
+                  $headers[] = 'MIME-Version: 1.0' . "\r\n";
+                  $headers[] = 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+                  $headers[] = "X-Mailer: PHP \r\n";
+                  $headers[] = 'From: ' . $sender . ' < ' . $email . '>' . "\r\n";
                   $headers = array('Content-Type: text/html; charset=UTF-8');
 
                   $mail = wp_mail($to, $subject, $message, $headers);

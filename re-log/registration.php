@@ -49,10 +49,10 @@ function o_system_register_form_callback() {
             </div>
             <div class="form-group col col-1">
                 <?php
-                                ob_start();
-                                do_action('register_form');
-                                echo ob_get_clean();
-                            ?>
+                   ob_start();
+                     do_action('register_form');
+                    echo ob_get_clean();
+                 ?>
             </div>
             <div class="form-group col col-1">
                 <?php wp_nonce_field('userRegister', 'formType'); ?>
@@ -63,8 +63,6 @@ function o_system_register_form_callback() {
             </div>
         </form>
 <?php  } else {
-          echo '<p>Jesteś już zalogowany</p>';
-          // wp_redirect(site_url('/panel-uzytkownika/'));
           $url = site_url('/panel-uzytkownika/');
           echo("<script>location.href = '".$url."'</script>");
         
@@ -124,7 +122,7 @@ function o_system_register_form_callback() {
 
            if ($res['success'] == false) {
                $registrationError .= '<strong>Error! </strong> reCaptcha.,';
-		  } 
+		   } 
 
           $registrationError = trim($registrationError, ',');
           $registrationError = str_replace(",", "<br/>", $registrationError);
@@ -143,23 +141,6 @@ function o_system_register_form_callback() {
               );
 
               $errors = wp_insert_user($userdata);
-
-            // //   create post
-            // Create post object
-                // $my_post = array(
-                // 'post_type'  => 'shops',
-                // 'post_title'    => $u_name,
-                // 'post_status'   => 'draft',
-                // 'post_author'   => 1,
-                // 'meta_input' => array(
-                //     'shop-name' => 'test',
-                // )
-                // );
-                // // update_post_meta( $post_id, 'shop-name', $_POST['shop-name'] );
-                // // Insert the post into the database
-                // wp_insert_post( $my_post );
-
-
 
               if (is_wp_error($errors)) {
                   $registrationError = $errors->get_error_message();
