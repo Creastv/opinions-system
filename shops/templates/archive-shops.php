@@ -1,6 +1,17 @@
 <?php
 get_header();
  if ( have_posts() ) :
+
+    $cart = get_terms( array(
+      'taxonomy' => 'shop-cat',
+      'hide_empty' => false,
+    ) );
+    echo '<ul style="display:flex; justify-content: center; list-style:none; padding:30px 0;">';
+    foreach( $cart as $category ) {
+      echo '<li><a style="padding:10px" href="'. get_term_link($category->slug, 'shop-cat').'">'.$category->name.'</a></li>';
+    }
+    echo '</ul>';
+     
     while ( have_posts() ) : the_post();
        $shop = [
         'permalink' =>   get_permalink( get_the_ID() ),
