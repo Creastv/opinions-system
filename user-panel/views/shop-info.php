@@ -18,6 +18,7 @@ $shop = [
 
 if($post){
     echo o_system_control_shop();
+    
 
     if($shop['logo']){
       echo '<a href=" ' .$shop['permalink'] . '" >';

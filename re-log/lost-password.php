@@ -89,7 +89,7 @@
               // if  update user return true then lets send user an email containing the new password
               if ($update_user) {
                   $to = $email;
-                  $subject = 'Your new password';
+                  $subject = 'Twoje nowe hasło';
                   $sender = get_bloginfo('name');
                   $message = 'Twoje nowe hasło: ' . $random_password;
                   $headers[] = 'MIME-Version: 1.0' . "\r\n";

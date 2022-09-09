@@ -87,9 +87,6 @@ add_action('wp', 'wc_user_login_callback');
           $uPassword = $_POST['pwd'];
           $remMe = $_POST['remMe'];
           $redirect = $_POST['redirect'];
-          
-         
-
 
           $recaptcha = $_POST['g-recaptcha-response'];
           $res = reCaptcha($recaptcha);

@@ -28,27 +28,9 @@ while ( have_posts() ) : the_post();
 
 endwhile; ?>
 <?php 
-
-$taxonomies = get_terms( array(
-	'taxonomy' => 'shop-cat',
-	// 'hide_empty' => false
-) );
-
-if ( !empty($taxonomies) ) :
-	$output = '<select>';
-	foreach( $taxonomies as $category ) {
-		if( $category->parent == 0 ) {
-			$output.= '<optgroup label="'. esc_attr( $category->name ) .'">';
-			foreach( $taxonomies as $subcategory ) {
-				if($subcategory->parent == $category->term_id) {
-				$output.= '<option value="'. esc_attr( $subcategory->term_id ) .'">
-					'. esc_html( $subcategory->name ) .'</option>';
-				}
-			}
-			$output.='</optgroup>';
-		}
-	}
-	$output.='</select>';
-	echo $output;
-endif;
+$terms = wp_get_post_terms( get_the_ID(), 'shop-cat' );
+  echo "<h2>Kategorie sklepu</h2>";
+  foreach( $terms as $category ) {
+   echo '<li><a href="'. get_term_link($category->slug, 'shop-cat').'">'.$category->name.'</a></li>';
+  }
 get_footer();
