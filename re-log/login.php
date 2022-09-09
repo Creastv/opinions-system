@@ -104,7 +104,7 @@ add_action('wp', 'wc_user_login_callback');
               $errors_login .= '<strong>Error! </strong> Hasło jest wymagane,';
           } 
 
-		  if (!$res['success'] == false) {
+		  if ($res['success'] == false) {
               $errors_login .= '<strong>Error! </strong> reCaptcha.,';
 		  } 
 		  
@@ -121,7 +121,7 @@ add_action('wp', 'wc_user_login_callback');
 				  $user = wp_signon($creds, true);
 				  if (is_wp_error($user)) {
 					//   $errors_login = $user->get_error_message();
-                     $errors_login = '<strong>ERROR</strong>: Wprowadzone hasło dla użytkownika <strong>' . $uName . ' </strong>  jest niepoprawne<a href=" ' . site_url('/odzyskiwanie-hasla/') . '" title="nie pamietasz hasła">nie pamietasz hasła</a>?';
+                     $errors_login = '<strong>ERROR</strong>: Wprowadzone hasło dla użytkownika <strong>' . $uName . ' </strong>  jest niepoprawne<a href=" ' . site_url('/odzyskiwanie-hasla/') . '" title="nie pamietasz hasła"> nie pamietasz hasła</a>?';
 				  } else {
 						wp_redirect(site_url('/panel-uzytkownika/'));
 					  exit;
