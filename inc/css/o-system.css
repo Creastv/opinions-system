@@ -142,6 +142,17 @@
           box-shadow: 0 0 0 0.2rem rgba(96, 83, 220, 0.25);
 }
 
+.o-system-form .form-group .o-system-ex-login {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
 .o-system-form .o-systm-btn {
   cursor: pointer;
   background-color: #6053dc;

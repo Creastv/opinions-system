@@ -181,6 +181,12 @@ function o_system_add_shop_callback() {
                     'name' => 'Non Catégorisé',
                     'slug' => 'non-categorise'
                 ) );
+                $tag = '4'; // Wrong. This will add the tag with the *name* '5'.
+                $tag = 4; // Wrong. This will also add the tag with the name '5'.
+                $tag = array( '4', 6 ); // Wrong. Again, this will be interpreted as a term name rather than an id.
+
+                $tag = array(4, 6 ); // Correct. This will add the tag with the id 5.
+                wp_set_post_terms( $user->ID, $tag, 'shop-cat' );
             } else {
                 $my_post = array(
                         'import_id' => $user->ID,

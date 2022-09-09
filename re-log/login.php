@@ -12,7 +12,7 @@
                 <?php echo $errors_login; ?>
             </div>
         <?php } ?>
-        <form method="post" class="wc-login-form">
+        <form method="post" class="o-system-form wc-login-form">
                 <div class="form-group col col-1">
                     <label for="user_name">Adres email</label>
                     <input class="form-control" name="log" type="text" id="user_name" value="<?php echo $_POST['log']; ?>">
@@ -21,6 +21,16 @@
                     <label for="user_password">Hasło</label>
                     <input class="form-control" name="pwd" id="user_password" type="password">
                 </div>
+                <div class="form-group col col-1 o-system-ex-login">
+                    <div class="">
+                        <input name="pwd" id="remMe" type="checkbox">
+                        <small>Zapamientaj mnie</small>
+                    </div>
+                    <div class="">
+                        <small><a   href="<?php echo home_url('/odzyskiwanie-hasla/'); ?>"> Nie pamiętasz hasła? </a></small>
+                    </div>
+                </div>
+
                 <div class="form-group col col-1">
                     <!-- <div class="g-recaptcha brochure__form__captcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></div> -->
                     <div class="g-recaptcha brochure__form__captcha" data-sitekey="6Le_WLwhAAAAAHilEH4trnb6OTffXBjb68BOeVtm"></div>
@@ -75,17 +85,25 @@ add_action('wp', 'wc_user_login_callback');
           global $errors_login;
           $uName = $_POST['log'];
           $uPassword = $_POST['pwd'];
+          $remMe = $_POST['remMe'];
           $redirect = $_POST['redirect'];
+          
+         
+
 
           $recaptcha = $_POST['g-recaptcha-response'];
           $res = reCaptcha($recaptcha);
-
+  
           if ($uName == '' ) {
               $errors_login .= '<strong>Error! </strong> Nazwa urzytkownika jest wymagana.,';
           } 
+          if ( !username_exists( $uName ) ) {
+              $errors_login .= '<strong>Error! </strong> Użykownik o podanym mailu nie istnieje,';
+          }
 		  if ($uPassword == '') {
               $errors_login .= '<strong>Error! </strong> Hasło jest wymagane,';
           } 
+
 		  if (!$res['success'] == false) {
               $errors_login .= '<strong>Error! </strong> reCaptcha.,';
 		  } 
@@ -99,10 +117,11 @@ add_action('wp', 'wc_user_login_callback');
 				  $creds = array();
 				  $creds['user_login'] = $uName;
 				  $creds['user_password'] = $uPassword;
-				  $creds['remember'] = false;
+				  $creds['remember'] = $remMe;
 				  $user = wp_signon($creds, true);
 				  if (is_wp_error($user)) {
-					  $errors_login = $user->get_error_message();
+					//   $errors_login = $user->get_error_message();
+                     $errors_login = '<strong>ERROR</strong>: Wprowadzone hasło dla użytkownika <strong>' . $uName . ' </strong>  jest niepoprawne<a href=" ' . site_url('/odzyskiwanie-hasla/') . '" title="nie pamietasz hasła">nie pamietasz hasła</a>?';
 				  } else {
 						wp_redirect(site_url('/panel-uzytkownika/'));
 					  exit;

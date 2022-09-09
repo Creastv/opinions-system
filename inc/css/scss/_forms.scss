@@ -28,6 +28,11 @@
         box-shadow: 0 0 0 0.2rem rgba($main, 0.25);
       }
     }
+    .o-system-ex-login{
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
     // .form-check {
     //   position: relative;
     //   display: block;
