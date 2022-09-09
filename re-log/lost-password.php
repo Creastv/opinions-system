@@ -91,7 +91,7 @@
                   $to = $email;
                   $subject = 'Your new password';
                   $sender = get_bloginfo('name');
-                  $message = 'Your new password is: ' . $random_password;
+                  $message = 'Twoje nowe hasło: ' . $random_password;
                   $headers[] = 'MIME-Version: 1.0' . "\r\n";
                   $headers[] = 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
                   $headers[] = "X-Mailer: PHP \r\n";
