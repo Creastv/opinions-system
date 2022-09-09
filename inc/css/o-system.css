@@ -188,6 +188,14 @@
   color: red;
 }
 
+.o-system--alert-success {
+  border: 1px solid #4dff4d;
+}
+
+.o-system--alert-success strong {
+  color: green;
+}
+
 .user-panel {
   max-width: 100% !important;
 }

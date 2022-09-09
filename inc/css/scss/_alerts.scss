@@ -15,4 +15,9 @@
         color:$red;
     }
 }
-.o-system--alert-success{}
+.o-system--alert-success{
+     border: 1px solid lighten($green, 40%);
+    strong{
+        color:$green;
+    }
+}
